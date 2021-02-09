@@ -1,0 +1,65 @@
+"""CRUD operations."""
+
+from model import db, User, GroupDance, DanceEvent, connect_to_db
+import datetime
+
+def create_user(username, user_fname, user_lname, email, password, user_bio, user_location, user_events, user_profile_photo):
+    """Create and return a new user. """
+
+    user = User(username=username,
+                user_fname=user_fname,
+                user_lname=user_lname,
+                email=email,
+                password=password,
+                user_bio=user_bio,
+                user_location=user_location,
+                user_events=user_events,
+                user_profile_photo=user_profile_photo)
+
+    db.session.add(user)
+    db.session.commit()
+
+    return user 
+
+def create_group_dance(group_dance_name, group_dance_types):
+    """Create and return a new group dance"""
+
+    group_dance = GroupDance(group_dance_name=group_dance_name, group_dance_types=group_dance_types)
+
+    db.session.add(group_dance)
+    db.session.commit()
+
+    return group_dance
+
+def create_dance_event(dance_event_name, dance_event_location, dance_event_description, dance_event_date, dance_event_time, dance_event_reoccuring, dance_event_photo):
+    """Create and return a dance event"""
+
+    dance_event = DanceEvent(dance_event_name=dance_event_name,
+                            dance_event_location=dance_event_location, 
+                            dance_event_description=dance_event_description, 
+                            dance_event_date=dance_event_date, 
+                            dance_event_time=dance_event_time, 
+                            dance_event_reoccuring=dance_event_reoccuring, 
+                            dance_event_photo=dance_event_photo)
+
+    db.session.add(dance_event)
+    db.session.commit()
+
+    return dance_event
+
+def return_all_users():
+    """Returns all users"""
+
+    all_users = User.query.all()
+    return all_users
+
+def return_all_dance_events():
+    """Returns all events"""
+
+    all_events = DanceEvent.query.all()
+    return all_events
+
+    
+if __name__ == '__main__':
+    from server import app
+    connect_to_db(app)

@@ -3,7 +3,7 @@
 from flask import Flask
 from flask import (Flask, render_template, request, flash, session,
                    redirect)
-from model import connect_to_db
+from model import connect_to_db, db 
 import crud
 
 from jinja2 import StrictUndefined
@@ -13,24 +13,24 @@ app.secret_key = '123abc'
 app.jinja_env.undefined = StrictUndefined
 
 
-#Routes here 
+# #Routes here 
 
-@app.route('/')
-def homepage():
-        """Homepage/Login/SignUp Display"""
+# @app.route('/')
+# def homepage():
+#         """Homepage/Login/SignUp Display"""
         
-        return render_template('homepage.html')
+#         return render_template('homepage.html')
 
-@app.route('/users')
+# @app.route('/users')
 
-#user profiles /sign-in 
+# #user profiles /sign-in 
 
-@app.route('/group_dances')
+# @app.route('/group_dances')
 
 
-@app.route('/dance_events')
+# @app.route('/dance_events')
 
-#link to calendars 
+# #link to calendars 
 
 
 

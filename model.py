@@ -32,8 +32,9 @@ class User(db.Model):
     def __repr__(self):
         """Show user info"""
         return f'<User user_id={self.user_id} username={self.username} user_fname={self.user_fname} user_lname={self.user_lname}\
-        email={self.email} user_bio={self.user_bio} user_location={self.user_location} user_events={self.user_events}\
-        user_profile_photo={self.user_profile_photo}>'
+        email={self.email} user_bio={self.user_bio} user_location={self.user_location} user_events={self.user_events}>'
+
+# user_profile_photo={self.user_profile_photo}>'
 
 
 
@@ -77,10 +78,10 @@ class DanceEvent(db.Model):
     group_dance_id = db.Column(db.Integer, db.ForeignKey('group_dances.group_dance_id'), nullable=False)
     # group_dance_name = db.Column(db.String, db.ForeignKey('group_dances.group_dance_id'), nullable=False)
     # username = db.Column(db.String, db.ForeignKey('users.username')
-    user_id = db.Column(db.Integer, db.ForeignKey('users.user_id')  
+    user_id = db.Column(db.Integer, db.ForeignKey('users.user_id') )
     # (WHY IS USER_ID HIGHLIGHTED BLUE ???? )
 
-    
+     
     user = db.relationship('User', backref='dance_events')
 
  

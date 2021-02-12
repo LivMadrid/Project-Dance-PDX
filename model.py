@@ -75,7 +75,7 @@ class DanceEvent(db.Model):
     dance_event_time = db.Column(db.Integer)
     dance_event_reoccuring = db.Column(db.String)
     # dance_event_photo = 
-    group_dance_id = db.Column(db.Integer, db.ForeignKey('group_dances.group_dance_id'), nullable=False)
+    group_dance_id = db.Column(db.Integer, db.ForeignKey('group_dances.group_dance_id'))
     # group_dance_name = db.Column(db.String, db.ForeignKey('group_dances.group_dance_id'), nullable=False)
     # username = db.Column(db.String, db.ForeignKey('users.username')
     user_id = db.Column(db.Integer, db.ForeignKey('users.user_id') )
@@ -83,22 +83,22 @@ class DanceEvent(db.Model):
 
      
     user = db.relationship('User', backref='dance_events')
-
+  
  
     def __repr__(self):
         return f'<DanceEvent dance_event_id={self.dance_event_id} dance_event_name={self.dance_event_name}\
         dance_event_location={self.dance_event_location} dance_event_description={self.dance_event_description}\
         dance_event_date={self.dance_event_date} dance_event_time={self.dance_event_time}\
-        dance_event_reoccuring={self.dance_event_reoccuring} dance_event_photo={self.dance_event_photo}>'
+        dance_event_reoccuring={self.dance_event_reoccuring} >'
+
+
+# dance_event_photo={self.dance_event_photo
 
 
 
 
 
-
-
-
-def connect_to_db(flask_app, db_uri='postgresql:///dance_events', echo=True):
+def connect_to_db(flask_app, db_uri='postgresql:///dance_events', echo=False):
     flask_app.config['SQLALCHEMY_DATABASE_URI'] = db_uri
     flask_app.config['SQLALCHEMY_ECHO'] = echo
     flask_app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -117,3 +117,8 @@ if __name__ == '__main__':
     # query it executes.
 
     connect_to_db(app)
+
+
+
+
+# (username='test-username',user_fname='test-fname', user_lname='test-lname', email='test@test.test', password='test', user_bio = 'test user bio', user_location = 'test-user-location', user_events = 'test-user-events')

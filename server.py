@@ -14,23 +14,59 @@ app.jinja_env.undefined = StrictUndefined
 
 
 # #Routes here 
-
-# @app.route('/')
-# def homepage():
-#         """Homepage/Login/SignUp Display"""
+@app.route('/')
+def homepage():
+    """Homepage"""
         
-#         return render_template('homepage.html')
+    return render_template('homepage.html')
 
-# @app.route('/users')
+#takes user to login form or redirects to sign
 
-# #user profiles /sign-in 
+@app.route('/log_in', )
+def log_in():
+    """Login to app""" 
 
-# @app.route('/group_dances')
+    return render_template('log_in.html')
+
+@app.route('/user_profile')
+def profile():
+        """User Profile Page"""
+        user = request.args.get('username')
 
 
-# @app.route('/dance_events')
+        return render_template('/user_profile', dancer=user)
 
-# #link to calendars 
+# @app.route('/sign_up')
+# def create_user():
+#     """User sign up""" 
+
+
+# @app.route('/calendar_map')
+# def calendar_map():
+
+# @app.route('/add_event')
+# def create_dance_event():
+
+# @app.route('/all_events')
+# def all_events():
+#     """Display all events (list)"""
+# event = crud.return_all_dance_events
+
+
+# # @app.route('/users')
+# # def all_users():
+# #     """Display All Users"""
+# #     user = crud.return_all_users
+
+# #     return render_template('all_users.html', users=users)
+
+# @app.route('/group_dances_page')
+# def group_dance_page():
+
+# @app.route('/add_group_dance')
+# def create_group_dance():
+
+
 
 
 

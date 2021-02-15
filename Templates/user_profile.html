@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block title %}Welcome {user.username} ?????{% endblock %}
+<div> <img src=" /img/dancefeet1.jpg" alt="Dance Feet" style="width:100%"> </div>
+{% block body %}
+  <h1>Profile Info</h1>
+    <div>
+        <label> Username: </label>
+        {{dancer}}
+        <label> Full Name: </label>
+
+        <label>Email: </label>
+
+        <label> From City:</label>
+        
+        <label>From Zipcode:</label>
+
+        <label>User Bio:</label>
+        
+        <label>User Groups</label>
+
+        <label>User Events</label>
+
+
+    </div>
+     
+
+
+
+
+  <h2>Navigation</h2>
+  <ul>
+    <li><a href="/calendar">Login to your account</a></li>
+    
+  </ul>
+{% endblock %}

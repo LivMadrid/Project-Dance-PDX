@@ -19,7 +19,8 @@ class User(db.Model):
     email = db.Column(db.String, nullable=False, unique=True)
     password = db.Column(db.String, nullable=False, unique=False)
     user_bio = db.Column(db.Text, nullable=False)
-    user_location = db.Column(db.String, nullable=False)
+    user_city = db.Column(db.String, nullable=False)
+    user_zipcode = db.Column(db.Integer, nullable=False, unique=False)
     user_events = db.Column(db.String, nullable=False)
     # user_profile_photo = db.Column()
     # group_dance_id = db.Column(db.Integer, db.ForeignKey('group_dances.group_dance_id'), nullable=False)
@@ -32,7 +33,7 @@ class User(db.Model):
     def __repr__(self):
         """Show user info"""
         return f'<User user_id={self.user_id} username={self.username} user_fname={self.user_fname} user_lname={self.user_lname}\
-        email={self.email} user_bio={self.user_bio} user_location={self.user_location} user_events={self.user_events}>'
+        email={self.email} user_bio={self.user_bio} user_city={self.user_city} user_zipcode={self.user_zipcode} user_events={self.user_events}>'
 
 # user_profile_photo={self.user_profile_photo}>'
 
@@ -69,7 +70,8 @@ class DanceEvent(db.Model):
                         autoincrement=True, 
                         primary_key=True)
     dance_event_name = db.Column(db.String)
-    dance_event_location = db.Column(db.String)
+    dance_event_city = db.Column(db.String)
+    dance_event_zipcode = db.Column(db.Integer)
     dance_event_description = db.Column(db.String)
     dance_event_date = db.Column(db.DateTime)
     dance_event_time = db.Column(db.Integer)
@@ -87,7 +89,7 @@ class DanceEvent(db.Model):
  
     def __repr__(self):
         return f'<DanceEvent dance_event_id={self.dance_event_id} dance_event_name={self.dance_event_name}\
-        dance_event_location={self.dance_event_location} dance_event_description={self.dance_event_description}\
+        dance_event_city={self.dance_event_city} dance_event_zipcode={self.dance_event_zipcode} dance_event_description={self.dance_event_description}\
         dance_event_date={self.dance_event_date} dance_event_time={self.dance_event_time}\
         dance_event_reoccuring={self.dance_event_reoccuring} >'
 
@@ -121,4 +123,4 @@ if __name__ == '__main__':
 
 
 
-# (username='test-username',user_fname='test-fname', user_lname='test-lname', email='test@test.test', password='test', user_bio = 'test user bio', user_location = 'test-user-location', user_events = 'test-user-events')
+# (username='test-username',user_fname='test-fname', user_lname='test-lname', email='test@test.test', password='test', user_bio = 'test user bio', user_zipcode = '97701', user_events = 'test-user-events')

@@ -64,7 +64,14 @@ def return_all_dance_events():
     return all_events
 
 
+def get_user_by_email(email):
+    """Return a user by email."""
+
+    return User.query.filter(User.email == email).first()
+
+
 # def test_tables():
+# """TEST CODE FOR DATA BASE"""
 #     test_user= create_user('test-username', 'test-fname', 'test-lname', 'test@test.test','test bio', '11111', 'test user events')
 #     test_group_dance = create_group_dance('test group name', 'test group type')
 #     test_dance_event = create_dance_event('test event', 'test city', '11111', 'test descript', '2/11/2021', '1', 'test yes', '1', '1')

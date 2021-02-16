@@ -2,7 +2,9 @@
 {% block title %}Welcome {user.username} ?????{% endblock %}
 <div> <img src=" /img/dancefeet1.jpg" alt="Dance Feet" style="width:100%"> </div>
 {% block body %}
-  <h1>Profile Info</h1>
+  <h1>Ciao {{username }}</h1>
+
+  <h2>
     <div>
         <label> Username: </label>
         {{dancer}}
@@ -10,26 +12,36 @@
 
         <label>Email: </label>
 
-        <label> From City:</label>
+        <label> City:</label>
         
-        <label>From Zipcode:</label>
+        <label> Zipcode:</label>
 
-        <label>User Bio:</label>
+        <label> Bio:</label>
         
-        <label>User Groups</label>
+        <label> Groups</label>
 
-        <label>User Events</label>
+        <label> Events</label>
 
 
     </div>
-     
+  </h2>
 
 
 
 
-  <h2>Navigation</h2>
-  <ul>
-    <li><a href="/calendar">Login to your account</a></li>
-    
-  </ul>
+  <h3>Navigation</h3>
+  <div>
+    <label>Create Event</label>
+
+    <label>Event Calendar and Map</label>
+
+    <label>Create Group Dance</label>
+
+    <label>Logout</label>
+      <form action="/" method="POST">
+        <button type="submit">Logout</button>
+      </form>
+  </div>
+
+
 {% endblock %}

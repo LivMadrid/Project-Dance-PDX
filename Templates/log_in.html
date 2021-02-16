@@ -3,10 +3,12 @@
 <div> <img src=" img/dancefeet1.jpg" alt="Dance Feet" style="width:100%"> </div>
 {% block body %}
   <h1>Dancer Log In Form</h1>
-  <form action="/user_profile">   
+  <form action="/user_profile" method="POST">   
     <div class= 'container'>
         <label>Username:</label>
         <input type="username" name="username" required>
+        <label>Email:</label>
+        <input type="email" name="email" required>
         <label>Password:</label>
         <input type="password" name="password" required>
         <button type="submit">Login</button>
@@ -20,9 +22,12 @@
 
 
 <h2>Navigation</h2>
-  <ul>
-    <li><a href="/sign_up"> Not a memember yet? Sign up today and start dancing away!</a></li>
-  </ul>
+  <form action="/sign_up">
+    <div>
+      <label> Not a member yet? Sign up today and start dancing away!</label>
+      <input value = "Sign Up" type="submit">
+    </div>
+  </form>
 {% endblock %}
 
 

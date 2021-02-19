@@ -2,3 +2,34 @@
 jinja2.exceptions.TemplateNotFound
 jinja2.exceptions.TemplateNotFound: /user_profile (when using form=action(/user_profile
 ))
+
+
+2.16.21 
+405 
+Method Not Allowed
+The method is not allowed for the requested URL.
+
+Getting this error on the (/'log_in, method=POST) function. Everything seems to be in order, but obviously is not sending form info through. 
+Unresolved as of 2.16.21 @ 5:30 pm
+
+
+2.18.21
+
+  File "/home/vagrant/src/LivProject/server.py", line 37, in get_login_info
+    db_password = crud.check_user_login_password(password)
+  File "/home/vagrant/src/LivProject/crud.py", line 94, in check_user_login_password
+    user  = User.query.get.all() # FIX ME --- how to get current user's /current session passwrod
+AttributeError: 'function' object has no attribute 'all'
+
+ile "/home/vagrant/src/LivProject/server.py", line 37, in get_login_info
+    db_password = crud.check_user_login_password(password)
+  File "/home/vagrant/src/LivProject/crud.py", line 94, in check_user_login_password
+    user  = User.query.get.all() # FIX ME --- how to get current user's /current session passwrod
+AttributeError: 'function' object has no attribute 'all'
+127.0.0.1 - - [19/Feb/2021 00:34:20] "GET /login?__debugger__=yes&
+
+  File "/home/vagrant/src/LivProject/env/lib/python3.6/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/vagrant/src/LivProject/server.py", line 104, in get_sign_up_info
+    return render_template('user_profile.html', username=username, fname=user_fname, lname=user_lname, email=email, bio=user_bio, city=user_city, zipcode=user_zipcode, events=user_events)
+NameError: name 'user_fname' is not defined

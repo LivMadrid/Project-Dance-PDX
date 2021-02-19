@@ -5,7 +5,7 @@ from random import choice, randint
 from datetime import datetime
 
 import crud
-import model
+from model import User, GroupDance, DanceEvent, db
 import server
 
 os.system('dropdb ratings')
@@ -17,81 +17,85 @@ model.db.create_all()
 
 
 def seed_users():
-    user1 = User('Max1', 'Max', 'Fernet', 'max@max.com', '123', 'Max loves all dancing especially Salsa!', 'Portland', '97201' 'Salsa Nights')
-    user2 = User('Luigi2', 'Luigi', 'Montemurra', 'gigi@gigi.com', 'abc', 'Gigi dances Salsa and Tango', 'Portland', '97222','Salsa Nights, Milonga Canaro')
-    user3 = User('Jelli', 'Angelica', 'Perisco', 'jellybean@jelli.com', '1234', 'Angelica loves to dance Salsa, Swing, and Blues', 'Vancouver', '98683', 'Salsa Nights, SwingLoft, Blues Boogie')
-    user4 = User('Bengiii', 'Bengi', 'Beyaz', 'bengibeats@bengi.com', '5678', 'Bengi grooves to Hip Hop, Swing, and Blues', 'Portland', '97266','QuestLove Hip Hop, SwingLoft, Blues PDX')
-    user5 = User('CutieRutie', 'Rutabega', 'Gardner', 'qtrutie@rutie.com', '54321',  'Rutie is new to dancing Swing, but loves to Applejack', 'Portland','97217', 'SwingLoft, LindyTime')
-    user6 = User('Shandi', 'Shandor', 'Lokacs', 'shandorl@shandorl.com', '321', 'Shandor just moved from Budapest. He enjoys Tango, Blues, and Salsa', 'Portland', '97218', 'Milonga Canaro, Milonga Sentimental, Salsa Nights, Blues PDX')
-    user7 = User('Bahar82', 'Bahar', 'Deniz', 'bahar82@bahar.com', '987', 'Bahar gets down to Hip Hop beats and soulful Blues', 'Portland', '97201','QuestLove Hip Hop, Blues PDX, Blues Boogie')
-    user8 = User('JRome', 'Jerome', 'Cooper', 'jcooper@cooper.com', '1010',  'Jerome is a seasoned dancer (10 yrs) in Blues and Swing', 'Oregon City', '97045', 'SwingLoft, LindyTime, Blues Boogie, Blues PDX')
-    user9 = User('Giu90', 'Giulia', 'Gigli', 'giu90@giulia.com', '1111', 'Giulia dances Tango and Salsa in Sardegna and PDX', 'Portland', '97222', 'Milonga Canaro, Milonga Sentimental, Salsa Nights')
-    user10 = User('Titus', 'Titus', 'Castana', 'titusc@titus.com', '1212', 'Titus is a Milonguero solomente!', 'Portland', '97232','Milonga Canaro, Milonga Sentimental, Milonga Noches Azul') 
 
-    db.add(user1)
-    db.add(user2)
-    db.add(user3)
-    db.add(user4)
-    db.add(user5)
-    db.add(user6)
-    db.add(user7)
-    db.add(user8)
-    db.add(user9)
-    db.add(user10)
+    user1 = User(username='Max1', user_fname='Max', user_lname='Fernet', email='max@max.com', password='123', user_bio='Max loves all dancing especially Salsa!', user_city ='Portland', user_zipcode= '97201',  user_events ='Salsa Nights')
+    user2 = User(username='Luigi2', user_fname='Luigi', user_lname='Montemurra', email='gigi@gigi.com', password='abc', user_bio='Gigi dances Salsa and Tango', user_city ='Portland', user_zipcode ='97222', user_events ='Salsa Nights, Milonga Canaro')
+    user3 = User(username='Jelli', user_fname='Angelica', user_lname='Perisco', email='jellybean@jelli.com', password='1234', user_bio='Angelica loves to dance Salsa, Swing, and Blues', user_city ='Vancouver', user_zipcode= '98683', user_events ='Salsa Nights, SwingLoft, Blues Boogie')
+    user4 = User(username='Bengiii', user_fname='Bengi', user_lname='Beyaz', email='bengibeats@bengi.com', password='5678', user_bio='Bengi grooves to Hip Hop, Swing, and Blues', user_city ='Portland', user_zipcode= '97266',user_events ='QuestLove Hip Hop, SwingLoft, Blues PDX')
+    user5 = User(username='CutieRutie', user_fname='Rutabega', user_lname='Gardner', email='qtrutie@rutie.com', password='54321',  user_bio='Rutie is new to dancing Swing, but loves to Applejack', user_city ='Portland',user_zipcode= '97217', user_events ='SwingLoft, LindyTime')
+    user6 = User(username='Shandi', user_fname='Shandor', user_lname='Lokacs', email='shandorl@shandorl.com', password='321', user_bio='Shandor just moved from Budapest. He enjoys Tango, Blues, and Salsa', user_city ='Portland', user_zipcode='97218', user_events ='Milonga Canaro, Milonga Sentimental, Salsa Nights, Blues PDX')
+    user7 = User(username='Bahar82', user_fname='Bahar', user_lname='Deniz', email='bahar82@bahar.com', password='987', user_bio='Bahar gets down to Hip Hop beats and soulful Blues', user_city ='Portland', user_zipcode='97201',user_events ='QuestLove Hip Hop, Blues PDX, Blues Boogie')
+    user8 = User(username='JRome', user_fname='Jerome', user_lname='Cooper', email='jcooper@cooper.com', password='1010',  user_bio='Jerome is a seasoned dancer (10 yrs) in Blues and Swing', user_city ='Oregon City', user_zipcode='97045', user_events ='SwingLoft, LindyTime, Blues Boogie, Blues PDX')
+    user9 = User(username='Giu90', user_fname='Giulia', user_lname='Gigli', email='giu90@giulia.com', password='1111', user_bio='Giulia dances Tango and Salsa in Sardegna and PDX', user_city ='Portland', user_zipcode='97222', user_events ='Milonga Canaro, Milonga Sentimental, Salsa Nights')
+    user10 = User(username='Titus', user_fname='Titus', user_lname='Castana', email='titusc@titus.com', password='1212', user_bio='Titus is a Milonguero solomente!', user_city ='Portland', user_zipcode='97232', user_events ='Milonga Canaro, Milonga Sentimental, Milonga Noches Azul') 
 
-    db.commit()
+    db.session.add(user1)
+    db.session.add(user2)
+    db.session.add(user3)
+    db.session.add(user4)
+    db.session.add(user5)
+    db.session.add(user6)
+    db.session.add(user7)
+    db.session.add(user8)
+    db.session.add(user9)
+    db.session.add(user10)
 
-    crud.create_user(username, user_fname, user_lname, email, password, user_bio, user_city, user_zipcode, user_events)
+    db.session.commit()
+
+    # crud.create_user(username, user_fname, user_lname, email, password, user_bio, user_city, user_zipcode, user_events)
 
 # username, user_fname, user_lname, email, password, user_bio, user_location, user_events
 
 
 def seed_group_dances():
 
-    group1 = ('Portland Salsa y Bachata Dancers', 'Salsa, Bachata')
-    group2 = ('Portland Hoppers', 'East-Coast Swing, Lindy Hop')
-    group3 = ('PDX Hip Hop', 'Hip Hop')
-    group4 = ('Blues Dancers PDX', 'Blues')
-    group5 = ('Milongueros PDX', 'Tango, Milonga, Tango Nuevo')
+    group1 = GroupDance(group_dance_name='Portland Salsa y Bachata Dancers', group_dance_types='Salsa, Bachata')
+    group2 = GroupDance(group_dance_name='Portland Hoppers', group_dance_types='East-Coast Swing, Lindy Hop')
+    group3 = GroupDance(group_dance_name='PDX Hip Hop', group_dance_types='Hip Hop')
+    group4 = GroupDance(group_dance_name='Blues Dancers PDX', group_dance_types='Blues')
+    group5 = GroupDance(group_dance_name='Milongueros PDX', group_dance_types='Tango, Milonga, Tango Nuevo')
 
-    db.add(group1)
-    db.add(group2)
-    db.add(group3)
-    db.add(group4)
-    db.add(group5)
+    db.session.add(group1)
+    db.session.add(group2)
+    db.session.add(group3)
+    db.session.add(group4)
+    db.session.add(group5)
 
-    db.commit()
+    db.session.commit()
 
-    crud.create_group_dance(group_dance_name, group_dance_types)
+    # crud.create_group_dance(group_dance_name, group_dance_types)
 
 def seed_events(): 
-    # event1 = (dance_event_name, dance_event_city, dance_event_zipcode,  dance_event_description, dance_event_date, dance_event_time, dance_event_reoccuring, dance_event_photo
+    # event1 = (dance_event_name, dance_event_city, dance_event_zipcode,  dance_event_description, dance_event_date, dance_event_time, dance_event_reoccuring=, dance_event_photo
     # Salsa Nights SwingLoft Blues Boogie Blues PDX LindyTime Milonga Canaro Milonga Sentimental Milonga Noches Azul QuestLove Hip Hop
-    event1 = DanceEvent('Salsa Nights', 'Portland', '97201', 'Salsa y Bachata! Beginner class starts at 7pm. Intermediate at 7:30. Social Dancing from 8-11:30! Come enjoy with us', '2/28/2021', '7', 'Yes' )
-    event2 =  DanceEvent('SwingLoft', 'Portland', '97217', 'East Coast Swing! Beginner class starts at 6pm. Intermediate at 7:00. Social Dancing from 8-11:30! Come dance till you drop!', '3/8/2021', '6', 'Yes' )
-    event3 =  DanceEvent('LindyTime', 'Portland', '97201', 'LindyHop weekly classes! Beginner class 2pm-3pm. Intermediate at 3:15-5pm. Practice, Practice, Practice!', '3/7/2021', '2', 'Yes' )
-    event4 = DanceEvent('Blues Boogie', 'Portland', '97045', 'Blues Social! Every first Saturday of the Month. Beginner class starts at 7pm. Intermediate at 7:30. Social Dancing from 8pm-1am!', '3/6/2021', '7', 'Yes' )
-    event5 = DanceEvent('Blues PDX', 'Portland', '97201', 'Blues Lessons/Practica! Every Tuesday night. Beginner class starts at 5pm. Intermediate at 6:00. Practice Dancing from 7-8:30', '3/9/2021', '5', 'Yes' )
-    event6 = DanceEvent('Milonga Noches Azul', 'Portland', '97232', 'Monthly Milonga Every Fourth Satuday. Quick Review class at 8. Milonga 8:30pm-2am - refreshments provided. Dress to impress', '3/27/2021', '8', 'Yes' )
-    event7 = DanceEvent('Milonga Canaro', 'Portland', '97222', 'Biweekly Friday Night Milonga. Beginner class starts at 7pm. Intermediate at 7:30. Social Dancing from 8pm-1am!', '3/5/2021', '7', 'Yes' )
-    event8 = DanceEvent('Milonga Sentimental', 'Portland', '97218', ' 2nd Saturday Milonga. No classes. Tango Nuevo and Milonguero Tandas! Bring a snack to share! Social Dancing from 8pm-2am!', '3/13/2021', '8', 'Yes' )
-    event9 = DanceEvent('QuestLove Hip Hop', 'Portland', '97266', 'Weekly classes every Tuesday and Thursday 7pm Sharp! Bring a water bottle and comfortable clothes ', ' ', '7', 'Yes' )
-    event10 = DanceEvent('Hip Hop Duels', 'Portland', '97266', 'Come show off your moves in a duel competition! 8pm March 20th! RSVP ', '3/13/2021', '8', 'No' )
+    event1 = DanceEvent(dance_event_name='Salsa Nights', dance_event_city='Portland', dance_event_zipcode='97201', dance_event_description='Salsa y Bachata! Beginner class starts at 7pm. Intermediate at 7:30. Social Dancing from 8-11:30! Come enjoy with us', dance_event_date='2/28/2021', dance_event_time='7', dance_event_reoccuring='Yes' )
+    event2 =  DanceEvent(dance_event_name='SwingLoft', dance_event_city='Portland', dance_event_zipcode='97217', dance_event_description='East Coast Swing! Beginner class starts at 6pm. Intermediate at 7:00. Social Dancing from 8-11:30! Come dance till you drop!', dance_event_date='3/8/2021', dance_event_time='6', dance_event_reoccuring='Yes' )
+    event3 =  DanceEvent(dance_event_name='LindyTime', dance_event_city='Portland', dance_event_zipcode='97201', dance_event_description='LindyHop weekly classes! Beginner class 2pm-3pm. Intermediate at 3:15-5pm. Practice, Practice, Practice!', dance_event_date='3/7/2021', dance_event_time='2', dance_event_reoccuring='Yes' )
+    event4 = DanceEvent(dance_event_name='Blues Boogie', dance_event_city='Portland', dance_event_zipcode='97045', dance_event_description='Blues Social! Every first Saturday of the Month. Beginner class starts at 7pm. Intermediate at 7:30. Social Dancing from 8pm-1am!', dance_event_date='3/6/2021', dance_event_time='7', dance_event_reoccuring='Yes' )
+    event5 = DanceEvent(dance_event_name='Blues PDX', dance_event_city='Portland', dance_event_zipcode='97201', dance_event_description='Blues Lessons/Practica! Every Tuesday night. Beginner class starts at 5pm. Intermediate at 6:00. Practice Dancing from 7-8:30', dance_event_date='3/9/2021', dance_event_time='5', dance_event_reoccuring='Yes' )
+    event6 = DanceEvent(dance_event_name='Milonga Noches Azul', dance_event_city='Portland', dance_event_zipcode='97232', dance_event_description='Monthly Milonga Every Fourth Satuday. Quick Review class at 8. Milonga 8:30pm-2am - refreshments provided. Dress to impress', dance_event_date='3/27/2021', dance_event_time='8', dance_event_reoccuring='Yes' )
+    event7 = DanceEvent(dance_event_name='Milonga Canaro', dance_event_city='Portland', dance_event_zipcode='97222', dance_event_description='Biweekly Friday Night Milonga. Beginner class starts at 7pm. Intermediate at 7:30. Social Dancing from 8pm-1am!', dance_event_date='3/5/2021', dance_event_time='7', dance_event_reoccuring='Yes' )
+    event8 = DanceEvent(dance_event_name='Milonga Sentimental', dance_event_city='Portland', dance_event_zipcode='97218', dance_event_description=' 2nd Saturday Milonga. No classes. Tango Nuevo and Milonguero Tandas! Bring a snack to share! Social Dancing from 8pm-2am!', dance_event_date='3/13/2021', dance_event_time='8', dance_event_reoccuring='Yes' )
+    event9 = DanceEvent(dance_event_name='QuestLove Hip Hop', dance_event_city='Portland', dance_event_zipcode='97266', dance_event_description='Weekly classes every Tuesday and Thursday 7pm Sharp! Bring a water bottle and comfortable clothes ', dance_event_date=' ', dance_event_time='7', dance_event_reoccuring='Yes' )
+    event10 = DanceEvent(dance_event_name='Hip Hop Duels', dance_event_city='Portland', dance_event_zipcode='97266', dance_event_description='Come show off your moves in a duel competition! 8pm March 20th! RSVP ', dance_event_date='3/13/2021', dance_event_time='8', dance_event_reoccuring='No' )
 
-    db.add(event1)
-    db.add(event2)
-    db.add(event3)
-    db.add(event4)
-    db.add(event5)
-    db.add(event6)
-    db.add(event7)
-    db.add(event8)
-    db.add(event9)
-    db.add(event10)
+    db.session.add(event1)
+    db.session.add(event2)
+    db.session.add(event3)
+    db.session.add(event4)
+    db.session.add(event5)
+    db.session.add(event6)
+    db.session.add(event7)
+    db.session.add(event8)
+    db.session.add(event9)
+    db.session.add(event10)
 
-    db.commit()
+    db.session.commit()
 
-    crud.create_dance_event(dance_event_name, dance_event_city, dance_event_zipcode, dance_event_description, dance_event_date, dance_event_time, dance_event_reoccuring)
+#     # crud.create_dance_event(dance_event_name, dance_event_city, dance_event_zipcode, dance_event_description, dance_event_date, dance_event_time, dance_event_reoccuring)
 
 
 
+seed_users()
+seed_group_dances()
+seed_event()

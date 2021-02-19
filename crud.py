@@ -3,12 +3,12 @@
 from model import db, User, GroupDance, DanceEvent, connect_to_db
 import datetime
 
-def create_user(username, user_fname, user_lname, email, password, user_bio, user_city, user_zipcode, user_events):
+def create_user(username, user_fname, lname, email, password, user_bio, user_city, user_zipcode, user_events):
     """Create and return a new user. """
     # user_profile_photo
     user = User(username=username,
                 user_fname=user_fname,
-                user_lname=user_lname,
+                user_lname=lname,
                 email=email,
                 password=password,
                 user_bio=user_bio,
@@ -63,12 +63,45 @@ def return_all_dance_events():
     all_events = DanceEvent.query.all()
     return all_events
 
+def return_all_groups():
+    """Returns all groups"""
+    all_groups = GroupDance.query.all()
+    return all_groups
 
-def get_user_by_email(email):
+def return_user_profile(username):
+    """Display user profile"""
+    user = User.query.filter_by(username=username).all()
+
+    return user
+
+def get_user_by_username(username):
     """Return a user by email."""
+    
+    user = User.query.filter_by(username = username).first()
+    print(user)
+    # db_username = user.username
+    print("#######CRUD FUNCCTIOIIIOONNNN#############################")
+    #print("here in the crud function we have db_password which is: ", db_username)
+    if user:
+        return True # this person already exists - don't create another one
+    else:
+        return False
 
-    return User.query.filter(User.email == email).first()
+def check_user_login_email(email):
+    """Checks to see if a user account exists using email"""
+    
+    db_email = User.query.get(User.email == email)
+    return db_email
 
+# def check_user_login_password(password):
+#     """Verifies user account password"""
+
+#     # db_password = User.query.get(User.password == password)
+#     user  = User.query.get.all() # FIX ME --- how to get current user's /current session passwrod
+#     db_password = user.password
+#     print("#######CRUD FUNCCTIOIIIOONNNN#############################")
+#     # print("here in the crud function we have db_password which is: ", db_password)
+#     return db_password
 
 # def test_tables():
 # """TEST CODE FOR DATA BASE"""

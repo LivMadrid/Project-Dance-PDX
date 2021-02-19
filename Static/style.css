@@ -1,3 +1,9 @@
+*{
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 16px
+}
+
+
 body { 
     background-image: url("dancefeet1.jpg"); 
     background-position: center center; 

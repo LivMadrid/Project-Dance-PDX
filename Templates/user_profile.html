@@ -1,27 +1,28 @@
 {% extends 'base.html' %}
-{% block title %}Welcome {user.username} ?????{% endblock %}
+{% block title %}Welcome ?????{% endblock %}
 <div> <img src=" /img/dancefeet1.jpg" alt="Dance Feet" style="width:100%"> </div>
 {% block body %}
-  <h1>Ciao {{username }}</h1>
+  <h1>Welcome {{username}}</h1>
 
   <h2>
     <div>
+      <label> Member Info</label>
         <label> Username: </label>
-        {{dancer}}
+          {{username}}
         <label> Full Name: </label>
-
+          {{fname}} {{lname}}
         <label>Email: </label>
-
+          {{email}}
         <label> City:</label>
-        
+          {{city}}
         <label> Zipcode:</label>
-
+          {{zipcode}}
         <label> Bio:</label>
-        
+         {{bio}}
         <label> Groups</label>
-
+        
         <label> Events</label>
-
+          {{events}}
 
     </div>
   </h2>
@@ -31,12 +32,28 @@
 
   <h3>Navigation</h3>
   <div>
-    <label>Create Event</label>
+    <form action="/add_event">
+      <div>
+        <input value = "Create Dance Event" type="submit">
+      </div>
+    </form>
 
-    <label>Event Calendar and Map</label>
+    <form action="/event_calendar">
+      <div>
+        <label>Event Calendar and Map</label>
+        <!-- <a href  -->
+      </div>
+    </form>
 
-    <label>Create Group Dance</label>
+  
+    <form action="add_group_dance">
+      <div>
+        <input value = " Create Group Dance" type="submit">
+      </div>
+    </form>
 
+  
+  
     <label>Logout</label>
       <form action="/" method="POST">
         <button type="submit">Logout</button>

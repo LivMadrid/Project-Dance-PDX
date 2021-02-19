@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
 {% block title %}Please Log In to Continue{% endblock %}
-<div> <img src=" img/dancefeet1.jpg" alt="Dance Feet" style="width:100%"> </div>
+
 {% block body %}
   <h1>Dancer Log In Form</h1>
-  <form action="/user_profile" method="POST">   
+  <form action="/login" method="POST">   
     <div class= 'container'>
         <label>Username:</label>
         <input type="username" name="username" required>
@@ -18,7 +18,7 @@
 
     </form>
 
-     <div> <img src=" img/dancefeet1.jpg" alt="Dance Feet" style="width:100%"> </div>
+    
 
 
 <h2>Navigation</h2>

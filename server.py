@@ -13,103 +13,203 @@ app.secret_key = '123abc'
 app.jinja_env.undefined = StrictUndefined
 
 
-# #Routes here 
+#Displays homepage: A welcome statement and then two buttons for login/signup
 @app.route('/')
 def homepage():
     """Homepage"""
         
     return render_template('homepage.html')
 
-#takes user to login form or redirects to sign
+#takes user to login form
+@app.route('/login', methods=['POST'])
+def get_login_info():
 
-@app.route('/log_in')
+#gets requested info from form on login.html  using POST method
+    username = request.form.get('username')
+
+#-----------------------------------------------------------------------#
+    print("#########################################")
+    print(username)
+#-----------------------------------------------------------------------#
+
+    email =  request.form.get('email')
+    password = request.form.get('password')
+
+#-----------------------------------------------------------------------#
+    print(email)
+#-----------------------------------------------------------------------#
+    session['user'] = username # make this a dictionary 
+    print(session['user'])
+#crud fucntion checks username against data base
+    existing_user = crud.get_user_by_username(username) 
+    # send username to crud.check_user(name)
+    # -> user = User.query.filter_by(username(<-- from model.py)=name(<- can be anything))
+    # user.password <-- same name from model.py
+    user_profile_data = crud.return_user_profile(username)
+    #filter(User.username)
+    # filter_by(username)
+
+    # if request.methods == 'POST': #maybe redundant
+ 
+    if existing_user:
+        flash('logged in as {username}')
+        return render_template('user_profile.html',  username=username, fname=fname, lname=lname, email=email, bio=bio, city=city, zipcode=zipcode, events=events)
+    
+    else:
+        flash('incorrect password')
+        return redirect('/login')
+
+
+@app.route('/login')
 def log_in():
-    """Login to app""" 
-    # username, password
-    # username = request.form.get['username']
-    # email =  request.form.get['email']
-    # password = request.form.get['password']
+    """Get user sign in info""" 
+   
     return render_template('log_in.html')
 
-#, methods=['POST']
+#takes user from login in page -verifies email/pass and then either directs to user_profile or redirects to login form
+
+
+    
+
+
+
+
+
+
+
 #GET OR POST ? How to do it so it is unique username unique password --- if is good to go pass to user profile page other wise 
-#if not a memeber then redirects to sign-up page... 
-    # if password == '':  
-    #     session['current_user'] = username
-    #     flash(f'Logged in as {username}')
-    #     return redirect('/user_profile')
-
-    # else:
-    #     flash('Wrong password!')
-    #     return redirect('/login')
-
-
-
-
-    return redirect('/user_profile.html')
-
-
+#if not a member then redirects to sign-up page... 
+ 
 @app.route('/sign_up')
 def sign_up():
-    """ User sign up """
-    
-    # user = crud.get_user_by_email(email)
-    # if user:
-    #     flash('Cannot create an account with that email. Try again.')
-        
-    # else:
-    #     crud.create_user(email, password)
-    #     flash('Account created! Please log in.')
-    # return redirect('/log_in')
+    """ Get User sign up info """
 
-    # return render_template('user_profile.html')
     return render_template('sign_up.html')
 
-@app.route('/user_profile')
+@app.route('/sign_up', methods=['POST'])
+def get_sign_up_info():
+    """ User sign up info verification"""
+    
+
+    username= request.form.get('username')
+    print(username)
+    fname = request.form.get('fname') # <--- name needs to be from HTML name
+    lname = request.form.get('lname')
+    email = request.form.get('email')
+    password = request.form.get('password')
+    bio = request.form.get('bio')
+    city = request.form.get('city')
+    zipcode = request.form.get('zipcode')
+    events = request.form.get('events')
+
+    session['user'] = username # make this a dictionary 
+    print(session['user'])
+    existing_user = crud.get_user_by_username(username) # return True or False
+    # True - if the user already exists
+    print(username)
+    
+
+    if existing_user: #if True: if the user exists already
+        flash(f'An account with that username already exists. Try again? Or Forgot Password?')
+        return render_template('log_in.html')
+    else:
+        crud.create_user(username, fname, lname, email, password, bio, city, zipcode, events)
+        flash('Account created! ')
+        return render_template('user_profile.html', username=username, fname=fname, lname=lname, email=email, bio=bio, city=city, zipcode=zipcode, events=events)
+
+       
+        
+       
+    
+
+
+  
+
+
+@app.route('/user_profile', methods=['POST'])
 def profile():
-        """User Profile Page"""
-        user = request.args.get('username')
-# need this for all info but need to look into jquery/ajax for html
+    """User Profile Page"""
+    
+    # if  session['user'] = username:
+    # if session['user']:
+    #     username =  session['current user']
+    #     user = crud.get_user_by_username(username) # create this crud function
+    # user = crud.get_user_by_email(email)
+    # username = user.username
+    # email = user.email
+# return render_template('user-profile.hmtl', user=user)
+### ---> HTML 
+# <h1> Welcome {{ user.username }} </h1>
 
-        return render_template('/user_profile', dancer=user)
+    return render_template('user_profile.html', username=username, fname=fname, lname=lname, email=email, bio=bio, city=city, zipcode=zipcode, events=events)
 
-# @app.route('/calendar_map')
-# def calendar_map():
-#need to make calendar and get google maps API done 
-# @app.route('/all_events') this --
-# def all_events():
-#     """Display all events (list)"""
-# event = crud.return_all_dance_events
-
-
-# @app.route('/add_event')
-# def create_dance_event():
-# this html page is started - need to add js/ajax/jquery 
+# @app.route
 
 
+#         # , dancer=user
+
+# # @app.route('/calendar_map')
+# # def calendar_map():
+# #need to make calendar and get google maps API done 
+
+# # # @app.route('/users')
+# # # def all_users():
+# # #     """Display All Users"""
+# # #     user = crud.return_all_users
+
+# # #     return render_template('all_users.html', users=users)
 
 
-# # @app.route('/users')
-# # def all_users():
-# #     """Display All Users"""
-# #     user = crud.return_all_users
 
-# #     return render_template('all_users.html', users=users)
+
+
+
 
 # @app.route('/group_dances_page')
 # def group_dance_page():
+   
+#     return 
 
 # @app.route('/add_group_dance')
 # def create_group_dance():
+#     """Create new group dance"""
+#     new_dance_group = crud.create_group_dance(group_dance_name, group_dance_types)
+#     return render_template(new_dance_group.html, group_dance_name=group_dance_name, group_dance_types=group_dance_types)
+
+# @app.route('/all_dance_groups')
+# def all_dance_groups():
+#     """Display all groups"""
+#     all_d_groups = crud.return_all_groups()
+#     return all_d_groups
+
+# @app.route('/add_event')
+# def create_new_dance_event(dance_event_name, dance_event_city, dance_event_zipcode, dance_event_description, dance_event_date, dance_event_time, dance_event_reoccuring):
+#     """Get event info"""
+# # this html page is started - need to add js/ajax/jquery 
+#     list_new_event = crud.create_new_dance_event
+#     return render_template(list_new_event.html, )
+
+
+
+# @app.route('/all_events') 
+# def all_events():
+#     """Display all events (list)"""
+# list_all_events = crud.return_all_dance_events
+# #after MVP this will be a calendar instead of list
+#     return list_all_events
+
+
+
+
+
+
+
 
 #app integration test
 # def test_index(self):
 #     client = server.app.test_client()
 #     result= client.get('/')
 #     self.assertIn('b<h1>Form</h1>, result.data')
-
-
-
 
 
 

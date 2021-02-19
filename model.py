@@ -21,7 +21,7 @@ class User(db.Model):
     user_bio = db.Column(db.Text, nullable=False)
     user_city = db.Column(db.String, nullable=False)
     user_zipcode = db.Column(db.Integer, nullable=False, unique=False)
-    user_events = db.Column(db.String, nullable=False)
+    user_events = db.Column(db.String)
     # user_profile_photo = db.Column()
     # group_dance_id = db.Column(db.Integer, db.ForeignKey('group_dances.group_dance_id'), nullable=False)
     # group_dance_name = db.Column(db.String, db.ForeignKey('group_dances.group_dance_id'), nullable=False)

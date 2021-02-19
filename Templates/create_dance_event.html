@@ -3,23 +3,23 @@
 <div> <img src=" /img/dancefeet1.jpg" alt="Dance Feet" style="width:100%"> </div>
 {% block body %}
   <h1>Event Info Form</h1>
-     <form>
+     <form action= "/createevent" method="POST">
          <div class = "container">
              <label>Event Name: </label>
-                <input type="text" name="name">
+                <input type="text" name="eventname">
              <label>Event City:</label>
-                <input type="text" name="name" required>
+                <input type="text" name="city" required>
              <label>Event Zipcode:</label>
-                <input type="number" name="name" required>
+                <input type="number" name="zipcode" required>
              <label>Event Description:</label>
-                <input type="textarea"> 
+                <input type="textarea" name="description"> 
             <label>Event Date:</label>
-                <input type="date" name="name" required>
+                <input type="date" name="date" required>
              <label>Event Time:</label>
-                <input type="number" name="name" required>
+                <input type="number" name="time" required>
              <label>Is this a reoccuring event?</label>
-                <input type="radio" id="Yes" name="event" value="Yes">
-                <input type="radio" id="No"  name="event" value="No">
+                <input type="radio" id="Yes" name=" reoccuringevent" value="Yes">
+                <input type="radio" id="No"  name=" reoccuringevent" value="No">
 
          </div>
      </form>

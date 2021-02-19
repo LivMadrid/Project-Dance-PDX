@@ -5,14 +5,14 @@ from random import choice, randint
 from datetime import datetime
 
 import crud
-from model import User, GroupDance, DanceEvent, db
+from model import User, GroupDance, DanceEvent, db, connect_to_db
 import server
 
-os.system('dropdb ratings')
-os.system('createdb ratings')
+os.system('dropdb dance_events' )
+os.system('createdb dance_events')
 
-model.connect_to_db(server.app)
-model.db.create_all()
+connect_to_db(server.app)
+db.create_all()
 
 
 
@@ -76,7 +76,7 @@ def seed_events():
     event6 = DanceEvent(dance_event_name='Milonga Noches Azul', dance_event_city='Portland', dance_event_zipcode='97232', dance_event_description='Monthly Milonga Every Fourth Satuday. Quick Review class at 8. Milonga 8:30pm-2am - refreshments provided. Dress to impress', dance_event_date='3/27/2021', dance_event_time='8', dance_event_reoccuring='Yes' )
     event7 = DanceEvent(dance_event_name='Milonga Canaro', dance_event_city='Portland', dance_event_zipcode='97222', dance_event_description='Biweekly Friday Night Milonga. Beginner class starts at 7pm. Intermediate at 7:30. Social Dancing from 8pm-1am!', dance_event_date='3/5/2021', dance_event_time='7', dance_event_reoccuring='Yes' )
     event8 = DanceEvent(dance_event_name='Milonga Sentimental', dance_event_city='Portland', dance_event_zipcode='97218', dance_event_description=' 2nd Saturday Milonga. No classes. Tango Nuevo and Milonguero Tandas! Bring a snack to share! Social Dancing from 8pm-2am!', dance_event_date='3/13/2021', dance_event_time='8', dance_event_reoccuring='Yes' )
-    event9 = DanceEvent(dance_event_name='QuestLove Hip Hop', dance_event_city='Portland', dance_event_zipcode='97266', dance_event_description='Weekly classes every Tuesday and Thursday 7pm Sharp! Bring a water bottle and comfortable clothes ', dance_event_date=' ', dance_event_time='7', dance_event_reoccuring='Yes' )
+    event9 = DanceEvent(dance_event_name='QuestLove Hip Hop', dance_event_city='Portland', dance_event_zipcode='97266', dance_event_description='Weekly classes every Tuesday and Thursday 7pm Sharp! Bring a water bottle and comfortable clothes ', dance_event_date=None , dance_event_time='7', dance_event_reoccuring='Yes' )
     event10 = DanceEvent(dance_event_name='Hip Hop Duels', dance_event_city='Portland', dance_event_zipcode='97266', dance_event_description='Come show off your moves in a duel competition! 8pm March 20th! RSVP ', dance_event_date='3/13/2021', dance_event_time='8', dance_event_reoccuring='No' )
 
     db.session.add(event1)
@@ -98,4 +98,4 @@ def seed_events():
 
 seed_users()
 seed_group_dances()
-seed_event()
+seed_events()

@@ -70,14 +70,14 @@ def return_all_groups():
 
 def return_user_profile(username):
     """Display user profile"""
-    user = User.query.filter_by(username=username).all()
+    user = User.query.filter_by(username=username).first()
 
     return user
 
 def get_user_by_username(username):
     """Return a user by email."""
     
-    user = User.query.filter_by(username = username).first()
+    user = return_user_profile(username)
     print(user)
     # db_username = user.username
     print("#######CRUD FUNCCTIOIIIOONNNN#############################")

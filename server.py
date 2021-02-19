@@ -41,20 +41,21 @@ def get_login_info():
     session['user'] = username # make this a dictionary 
     print(session['user'])
 #crud fucntion checks username against data base
-    existing_user = crud.get_user_by_username(username) 
+    
+
+    user = crud.return_user_profile(username)
     # send username to crud.check_user(name)
     # -> user = User.query.filter_by(username(<-- from model.py)=name(<- can be anything))
     # user.password <-- same name from model.py
-    user_profile_data = crud.return_user_profile(username)
-    #filter(User.username)
+    # user_profile_data = crud.return_user_profile(username)
+    # #filter(User.username)
     # filter_by(username)
 
     # if request.methods == 'POST': #maybe redundant
  
-    if existing_user:
+    if user:
         flash('logged in as {username}')
-        return render_template('user_profile.html',  username=username, fname=fname, lname=lname, email=email, bio=bio, city=city, zipcode=zipcode, events=events)
-    
+        return render_template('user_profile.html', user= user)
     else:
         flash('incorrect password')
         return redirect('/login')
@@ -104,7 +105,7 @@ def get_sign_up_info():
 
     session['user'] = username # make this a dictionary 
     print(session['user'])
-    existing_user = crud.get_user_by_username(username) # return True or False
+    existing_user = crud.return_user_profile(username) # return True or False
     # True - if the user already exists
     print(username)
     
@@ -113,9 +114,9 @@ def get_sign_up_info():
         flash(f'An account with that username already exists. Try again? Or Forgot Password?')
         return render_template('log_in.html')
     else:
-        crud.create_user(username, fname, lname, email, password, bio, city, zipcode, events)
+        user = crud.create_user(username, fname, lname, email, password, bio, city, zipcode, events)
         flash('Account created! ')
-        return render_template('user_profile.html', username=username, fname=fname, lname=lname, email=email, bio=bio, city=city, zipcode=zipcode, events=events)
+        return render_template('user_profile.html', user=user)
 
        
         
@@ -126,10 +127,17 @@ def get_sign_up_info():
   
 
 
-@app.route('/user_profile', methods=['POST'])
+@app.route('/user_profile')
 def profile():
     """User Profile Page"""
     
+    
+    username = session['user']
+    user = crud.return_user_profile(username)
+     
+# if not in session redirect to login 
+   
+    ##exisiting user 
     # if  session['user'] = username:
     # if session['user']:
     #     username =  session['current user']
@@ -141,7 +149,45 @@ def profile():
 ### ---> HTML 
 # <h1> Welcome {{ user.username }} </h1>
 
-    return render_template('user_profile.html', username=username, fname=fname, lname=lname, email=email, bio=bio, city=city, zipcode=zipcode, events=events)
+    return render_template('user_profile.html', user=user )
+
+
+
+
+@app.route('/add_event', methods=['POST'])
+def create_new_dance_event():
+    """Get new event info"""
+# # this html page is started - need to add js/ajax/jquery 
+    event_name = request.form.get('eventname')
+    city = request.form.get('city')
+    zipcode = request.form.get('zipcode')
+    description = request.form.get('description')
+    date = request.form.get('date')
+    time = request.form.get('time')
+    reoccuring_event = request.form.get('reoccuringevent')
+
+
+
+
+    list_new_event = crud.create_new_dance_event
+    return render_template(list_new_event.html, event_name=eventname, city=city, zipcode=zipcode, description=description, date=date, time=time, reoccuring_event=reoccuringevent )  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 # @app.route
 
@@ -182,12 +228,6 @@ def profile():
 #     all_d_groups = crud.return_all_groups()
 #     return all_d_groups
 
-# @app.route('/add_event')
-# def create_new_dance_event(dance_event_name, dance_event_city, dance_event_zipcode, dance_event_description, dance_event_date, dance_event_time, dance_event_reoccuring):
-#     """Get event info"""
-# # this html page is started - need to add js/ajax/jquery 
-#     list_new_event = crud.create_new_dance_event
-#     return render_template(list_new_event.html, )
 
 
 

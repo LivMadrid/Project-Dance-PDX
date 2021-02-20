@@ -1,0 +1,68 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <style > 
+        body  {
+              background: rgb(207, 142, 199);
+              background-image: 'img/dancefeet1.jpg' alt="Dance Feet" style="width:100% ;
+            }
+ </style>
+    <div> <img src=" /img/dancefeet1.jpg" alt="Dance Feet" style="width:100%"> </div>
+
+
+    <script
+    src="https://code.jquery.com/jquery-3.5.1.js"
+    integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+    crossorigin="anonymous"></script>
+    <title>
+      {% block title %}Event{% endblock %}
+    </title>
+
+    {% block head %}{% endblock %}
+  </head>
+  <body>
+    {% block body %}
+    <h1>Event Page</h1>
+
+  <h2>
+    <div>
+      <label> Member Info</label>
+        <label> Event name: </label>
+        {{event.dance_event_name}}
+
+        <label> Event City: </label>
+          {{event.dance_event_city}} 
+
+        <label>Event Zipcode: </label>
+          {{event.dance_event_zipcode}}
+
+        <label> Event Description:</label>
+          {{event.dance_event_description}}
+
+        <label> Event Date:</label>
+          {{event.dance_event_date}}
+
+        <label> Event Time:</label>
+         {{event.dance_event_time}}
+
+        <label> Groups</label>
+        
+        <label> Event reoccuring</label>
+          {{event.dance_event_reoccuring}}
+
+    </div>
+  </h2>
+
+    
+    
+    
+    {% endblock %}
+
+    {% block after_body %}{% endblock %}
+  </body>
+
+
+
+</html>

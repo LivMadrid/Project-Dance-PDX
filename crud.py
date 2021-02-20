@@ -32,17 +32,17 @@ def create_group_dance(group_dance_name, group_dance_types):
 
     return group_dance
 
-def create_dance_event(dance_event_name, dance_event_city, dance_event_zipcode, dance_event_description, dance_event_date, dance_event_time, dance_event_reoccuring):
+def create_dance_event(eventname, city, zipcode, description, date, time, reoccuring_event):
     """Create and return a dance event"""
     #dance_event_photo
 
-    dance_event = DanceEvent(dance_event_name=dance_event_name,
-                            dance_event_city=dance_event_city,
-                            dance_event_zipcode=dance_event_zipcode, 
-                            dance_event_description=dance_event_description, 
-                            dance_event_date=dance_event_date, 
-                            dance_event_time=dance_event_time, 
-                            dance_event_reoccuring=dance_event_reoccuring)
+    dance_event = DanceEvent(dance_event_name=eventname,
+                            dance_event_city=city,
+                            dance_event_zipcode=zipcode, 
+                            dance_event_description=description, 
+                            dance_event_date=date, 
+                            dance_event_time=time, 
+                            dance_event_reoccuring=reoccuring_event)
                             # dance_event_photo=dance_event_photo)
 
     db.session.add(dance_event)
@@ -57,11 +57,12 @@ def return_all_users():
     return all_users
 
 
-def return_all_dance_events():
+def return_all_dance_events(eventname):
     """Returns all events"""
 
     all_events = DanceEvent.query.all()
     return all_events
+#change to limit ? so that only the nameand info shows not tableid number
 
 def return_all_groups():
     """Returns all groups"""
@@ -74,18 +75,26 @@ def return_user_profile(username):
 
     return user
 
-def get_user_by_username(username):
-    """Return a user by email."""
+def return_dance_event(eventname):
+
+    event = DanceEvent.query.filter_by(eventname=dance_event_name).first()
+
+    return event
+
+# def get_user_by_username(username): #user exists 
+#     """Return a user by email."""
     
-    user = return_user_profile(username)
-    print(user)
-    # db_username = user.username
-    print("#######CRUD FUNCCTIOIIIOONNNN#############################")
-    #print("here in the crud function we have db_password which is: ", db_username)
-    if user:
-        return True # this person already exists - don't create another one
-    else:
-        return False
+#     user = return_user_profile(username)
+#     print(user)
+#     # db_username = user.username
+#     print("#######CRUD FUNCCTIOIIIOONNNN#############################")
+#     #print("here in the crud function we have db_password which is: ", db_username)
+#     if user:
+#         return True # this person already exists - don't create another one
+#     else:
+#         return False
+
+# redundant 
 
 def check_user_login_email(email):
     """Checks to see if a user account exists using email"""

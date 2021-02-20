@@ -23,6 +23,7 @@ def homepage():
 #takes user to login form
 @app.route('/login', methods=['POST'])
 def get_login_info():
+    """Get info from login form and return user profile"""
 
 #gets requested info from form on login.html  using POST method
     username = request.form.get('username')
@@ -63,27 +64,18 @@ def get_login_info():
 
 @app.route('/login')
 def log_in():
-    """Get user sign in info""" 
+    """Takes user to login page""" 
    
     return render_template('log_in.html')
 
 #takes user from login in page -verifies email/pass and then either directs to user_profile or redirects to login form
-
-
-    
-
-
-
-
-
-
 
 #GET OR POST ? How to do it so it is unique username unique password --- if is good to go pass to user profile page other wise 
 #if not a member then redirects to sign-up page... 
  
 @app.route('/sign_up')
 def sign_up():
-    """ Get User sign up info """
+    """ Takes user to sign-up form page """
 
     return render_template('sign_up.html')
 
@@ -91,7 +83,6 @@ def sign_up():
 def get_sign_up_info():
     """ User sign up info verification"""
     
-
     username= request.form.get('username')
     print(username)
     fname = request.form.get('fname') # <--- name needs to be from HTML name
@@ -105,10 +96,9 @@ def get_sign_up_info():
 
     session['user'] = username # make this a dictionary 
     print(session['user'])
-    existing_user = crud.return_user_profile(username) # return True or False
-    # True - if the user already exists
+    existing_user = crud.return_user_profile(username) 
+    # return True or False # True - if the user already exists
     print(username)
-    
 
     if existing_user: #if True: if the user exists already
         flash(f'An account with that username already exists. Try again? Or Forgot Password?')
@@ -119,14 +109,6 @@ def get_sign_up_info():
         return render_template('user_profile.html', user=user)
 
        
-        
-       
-    
-
-
-  
-
-
 @app.route('/user_profile')
 def profile():
     """User Profile Page"""
@@ -135,7 +117,8 @@ def profile():
     username = session['user']
     user = crud.return_user_profile(username)
      
-# if not in session redirect to login 
+    return render_template('user_profile.html', user=user )
+    
    
     ##exisiting user 
     # if  session['user'] = username:
@@ -149,42 +132,64 @@ def profile():
 ### ---> HTML 
 # <h1> Welcome {{ user.username }} </h1>
 
-    return render_template('user_profile.html', user=user )
+@app.route('/add_event')
+def add_event():
+    """Create Event Form"""
 
-
+    return render_template('create_dance_event.html')
 
 
 @app.route('/add_event', methods=['POST'])
 def create_new_dance_event():
-    """Get new event info"""
+    """Get Event Creation info- Return event profile"""
 # # this html page is started - need to add js/ajax/jquery 
-    event_name = request.form.get('eventname')
+    eventname = request.form.get('eventname')
+    print('#########################################')
+    print('eventname')
     city = request.form.get('city')
     zipcode = request.form.get('zipcode')
     description = request.form.get('description')
     date = request.form.get('date')
     time = request.form.get('time')
     reoccuring_event = request.form.get('reoccuringevent')
+    
+    session['event'] = eventname
+    print(session['event'])
+    event = crud.create_dance_event(eventname, city, zipcode, description, date, time, reoccuring_event)
+
+    if event: #if True: if the event exists already
+        flash(f'An event with that name already exists. Try again? ')
+        return render_template('event.html', event=event)
+        #or better to redirect back to create event page if one already exists?
+    else:
+        event = crud.create_dance_event(eventname, city, zipcode, description, date, time, reoccuring_event)
+        flash('Event created!')
+        return render_template('event.html', event=event)
 
 
+@app.route('/event_profile')
+def return_event_profile():
+    """Returns an event profile page"""
+
+    # eventname = session['event']
+
+    event = crud.return_dance_event(eventname)
 
 
-    list_new_event = crud.create_new_dance_event
-    return render_template(list_new_event.html, event_name=eventname, city=city, zipcode=zipcode, description=description, date=date, time=time, reoccuring_event=reoccuringevent )  
+    return render_template('event.html', event=event)
+
+@app.route('/all_events')
+def all_events_return():
+    """Returns all events"""
+    
+
+    
+    eventname = session['event']
+    event = crud.return_all_dance_events(eventname)
 
 
-
-
-
-
-
-
-
-
-
-
-
-
+    if event:
+        return render_template('all_events.html', event=event)
 
 
 

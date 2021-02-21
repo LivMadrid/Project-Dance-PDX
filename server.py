@@ -192,6 +192,68 @@ def all_events_return():
         return render_template('all_events.html', event=event)
 
 
+@app.route('/add_group')
+def add_group():
+    """Create Group Form"""
+
+    return render_template('create_group_dance.html')
+
+
+@app.route('/add_group', methods=['POST'])
+def create_group_dance():
+    """Get group info from form and create group"""
+
+    groupname = request.form.get('groupname')
+    grouptype= request.form.get('grouptype')
+    
+    
+    session['group'] = groupname
+    print(session['group'])
+    group = crud.create_group_dance(groupname, grouptype)
+
+    if group: #if True: if the event exists already
+        flash(f'A group with that name already exists. Try again? ')
+        return render_template('group_dance_page.html', group=group)
+        #or better to redirect back to create event page if one already exists?
+    else:
+       group = crud.create_group_dance(groupname, grouptype)
+       flash('Group created!')
+       return render_template('group_dance_page.html', group=group)
+
+@app.route('/group_profile')
+def return_group_profile():
+    """Returns Group Profile"""
+
+    group = crud.return_group_profile(groupname)
+
+    return render_template('group_dance_page.html', group=group)
+
+@app.route('/all_dance_groups')
+def all_dance_groups():
+    """Display all groups"""
+
+    groupname = session['group']
+    group = crud.return_all_groups(groupname)
+
+
+    if group:
+        return render_template('all_groups.html', group=group)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 # @app.route
@@ -221,19 +283,7 @@ def all_events_return():
    
 #     return 
 
-# @app.route('/add_group_dance')
-# def create_group_dance():
-#     """Create new group dance"""
-#     new_dance_group = crud.create_group_dance(group_dance_name, group_dance_types)
-#     return render_template(new_dance_group.html, group_dance_name=group_dance_name, group_dance_types=group_dance_types)
-
-# @app.route('/all_dance_groups')
-# def all_dance_groups():
-#     """Display all groups"""
-#     all_d_groups = crud.return_all_groups()
-#     return all_d_groups
-
-
+#
 
 
 # @app.route('/all_events') 

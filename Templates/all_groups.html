@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block title %}Create a New Group{% endblock %}
+<div> <img src=" /img/dancefeet1.jpg" alt="Dance Feet" style="width:100%"> </div>
+{% block body %}
+
+  
+<h1>ALL GROUPS:</h1>
+    
+<label><ul> 
+
+
+
+
+
+
+
+
+
+
+    
+</ul></label>
+
+
+
+  <h2>Navigation</h2>
+  <ul>
+
+    <form action="/add_event">
+        <div>
+          <input value = "Create Dance Event" type="submit">
+        </div>
+      </form>
+      <form action="/add_group">
+      <div>
+        <input value = "Create New Group" type="submit">
+      </div></form>
+  
+
+    <li><a href="/calendar">See all events coming up in our calendar</a></li>
+    
+    <!-- <li><a href="/sign_up">Sign up today and start dancing away!</a></li> -->
+  </ul>
+{% endblock %}

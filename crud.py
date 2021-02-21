@@ -22,10 +22,10 @@ def create_user(username, user_fname, lname, email, password, user_bio, user_cit
 
     return user 
 
-def create_group_dance(group_dance_name, group_dance_types):
+def create_group_dance(groupname, grouptype):
     """Create and return a new group dance"""
 
-    group_dance = GroupDance(group_dance_name=group_dance_name, group_dance_types=group_dance_types)
+    group_dance = GroupDance(group_dance_name=groupname, group_dance_types=grouptype)
 
     db.session.add(group_dance)
     db.session.commit()
@@ -64,7 +64,14 @@ def return_all_dance_events(eventname):
     return all_events
 #change to limit ? so that only the nameand info shows not tableid number
 
-def return_all_groups():
+def return_group_profile(groupname):
+    """Returns group profile page """
+
+    group = GroupDance.query.filter_by(groupname=group_dance_name).first()
+
+    return group
+
+def return_all_groups(groupname):
     """Returns all groups"""
     all_groups = GroupDance.query.all()
     return all_groups

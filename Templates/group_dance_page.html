@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block title %}Groups{% endblock %}
+<div> <img src=" /img/dancefeet1.jpg" alt="Dance Feet" style="width:100%"> </div>
+{% block head %}{% endblock %}
+
+  
+</head>
+<body>
+  {% block body %}
+  <h1>Group Page</h1>
+
+<h2>
+  <div>
+    <label> Group Info</label>
+      <label> Group name: </label>
+      {{group.group_dance_name}}
+      
+
+      <label> Group Type: </label>
+      {{group.group_dance_types}}
+
+  </div>
+
+
+  
+  
+  
+
+  <h2>Navigation</h2>
+  <ul>
+    <li><a href="/calendar">See all events coming up in our calendar</a></li>
+    
+    <!-- <li><a href="/sign_up">Sign up today and start dancing away!</a></li> -->
+  </ul>
+{% endblock %}
+
+</body> 
+
+{% block after_body %}{% endblock %}
+
+
+</html>
+

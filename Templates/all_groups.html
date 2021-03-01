@@ -1,43 +1,51 @@
 {% extends 'base.html' %}
-{% block title %}Create a New Group{% endblock %}
+{% block title %}All Groups{% endblock %}
 <div> <img src=" /img/dancefeet1.jpg" alt="Dance Feet" style="width:100%"> </div>
-{% block body %}
+{% block head %}{% endblock %}
 
   
-<h1>ALL GROUPS:</h1>
-    
-<label><ul> 
+</head>
+<body>
+  {% block body %}
+  <h1>Groups</h1>
+
+<h2>
+  <div>
+    <label> Group Info</label>
+ 
 
 
+  </div>
 
-
-
-
-
-
-
-
-    
-</ul></label>
-
-
+  {% for group in groups %}
+  <ul>
+  <li>
+  {{group.group_dance_types}}<li>{{group.group_dance_name}}</li>
+  </li>
+  <div>
+  <li>
+    <input value="Join Group" type="submit">
+    <form action="/group_profile" >
+      <button type="submit">Group Profile</button>
+    </form>
+    </div>
+  </li>
+</div>
+</ul>
+  {% endfor %}
 
   <h2>Navigation</h2>
   <ul>
-
-    <form action="/add_event">
-        <div>
-          <input value = "Create Dance Event" type="submit">
-        </div>
-      </form>
-      <form action="/add_group">
-      <div>
-        <input value = "Create New Group" type="submit">
-      </div></form>
+    <li><a href="/all_events">See all events coming up in our calendar</a></li>
+    <li><a href="/user_profile">Return to Profile</a></li>
   
-
-    <li><a href="/calendar">See all events coming up in our calendar</a></li>
-    
-    <!-- <li><a href="/sign_up">Sign up today and start dancing away!</a></li> -->
   </ul>
 {% endblock %}
+
+</body> 
+
+{% block after_body %}{% endblock %}
+
+
+</html>
+

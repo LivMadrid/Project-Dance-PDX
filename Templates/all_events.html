@@ -1,21 +1,9 @@
-<!doctype html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width">
-    <style > 
-        body  {
-              background: rgb(207, 142, 199);
-              background-image: 'img/dancefeet1.jpg' alt="Dance Feet" style="width:100% ;
-            }
- </style>
-    <div> <img src=" /img/dancefeet1.jpg" alt="Dance Feet" style="width:100%"> </div>
 
 
-    <script
-    src="https://code.jquery.com/jquery-3.5.1.js"
-    integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
-    crossorigin="anonymous"></script>
+
+
+{% extends 'base.html' %}
+<head>
     <title>
       {% block title %}Events {% endblock %}
     </title>
@@ -25,28 +13,66 @@
   <body>
     {% block body %}
     
-    <h1>ALL DANCE EVENTS:</h1>
+    <h1>PDX DANCE EVENTS: </h1>
     
-        <label><ul> 
+      <ul>   Group Events
+        {% for event in events %}
+        
 
+        
 
-
-
-
-
-
-
-
-
-            
-        </ul></label>
+            {{event.group.group_dance_name | default('NONE', boolean=true)}}
+            <div>
+                <button type="button">Going!</button>
+                <button type="button">Interested!</button>
+            </div>
+          <li>{{event.dance_event_name}} :{{event.dance_event_description}}, {{event.dance_event_date}}</li>
+      
+         
+       
+          
+        {# Event is a sql alchemy object and it has all the attributes that are defined in model
+        and you are able to access values using . notation because its an object #}  
+        {% endfor %}
+      </ul>
     
     
+        <div id="map"></div>
+        <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC389BQpOUF3nQFHc7qky-pJoVMkdJo2Vo&callback=initMap&libraries=&v=weekly"
+      async></script> 
+
+    {% endblock %}
+<
+    {% block after_body %} 
+    <form action="/all_dance_groups">
+      <div>
+        <label> Join groups to start dancing with your community </label>
+          <input value = "Join Groups" type="submit">
+      </div>
+    </form>
+
+    <form action="/add_event">
+      <div>
+        <label> Create an event for your community </label>
+          <input value = "Create New Event" type="submit">
+      </div>
+    </form> 
+
+
+
+    
+  <h2>Navigation</h2>
+  <ul>
+    <li><a href="/all_events">See all events coming up in our calendar</a></li>
+    <li><a href="/user_profile">Return to Profile</a></li>
+  
+  </ul>
     {% endblock %}
 
-    {% block after_body %} {{event}}{% endblock %}
   </body>
 
-
+  
+  
 
 </html>

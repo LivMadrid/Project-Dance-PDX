@@ -33,3 +33,54 @@ AttributeError: 'function' object has no attribute 'all'
   File "/home/vagrant/src/LivProject/server.py", line 104, in get_sign_up_info
     return render_template('user_profile.html', username=username, fname=user_fname, lname=user_lname, email=email, bio=user_bio, city=user_city, zipcode=user_zipcode, events=user_events)
 NameError: name 'user_fname' is not defined
+
+
+
+
+
+/FIX ME: Groups aren't being added to the database
+1. new users should pick a group-type to be apart of
+      need to put a group field in the user table --> user can pick one group
+      <button>pick a group</button>      <button>pick an event</button> 
+       --> all events posted from                 --> all events render
+              that group
+2. then events from that group-type will be displayed to them
+3. Existing users: on their profile page: it should show: what groups they're apart of and what events those groups attend
+
+
+
+######################BELOW really tripped me up on where to write the for loop(jinja) 
+to break up list returned from SQLALCHEMY QUERY return_all_events ---> 
+you put on JINJA because it is easier than putting that for loop in flask server. and 
+consequently defining the variables in jinja from the attributes of model and server function
+
+FROM JINJA ON HTML TEMPLATE
+{# Event is a sql alchemy object and it has all the attributes that are defined in model
+        and you are able to access values using . notation because its an object #}  
+      </ul>
+  
+  FROM APP<ROUTE ALL_EVENTS 
+    if events:
+        return render_template('all_events.html', events=events)
+# evnets=events is creating a main agrument (left hand side function on server) and giving it a value on the right side(JINJA TEMPLATE). 
+
+
+
+#############TO DO ####################################################
+make groups a dictionary? =====> [groupid] = {"grouptype": [group_name, groupname]}
+????
+
+https://www.google.com/url?sa=i&url=https%3A%2F%2Fstock.adobe.com%2Fsearch%3Fk%3Ddancing%2520couple%2520feet&psig=AOvVaw2Abo-s5cARZOfTjpTHrQ_1&ust=1614299792132000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCOCq48Plg-8CFQAAAAAdAAAAABAD) alt="Dance Feet" style="width:100%" ;
+
+
+(https://media.gettyimages.com/photos/low-section-of-couple-dancing-on-rug-at-party-picture-id1148785389?s=2048x2048)
+
+
+https://sleepsavvymagazine.com/wp-content/uploads/2015/01/dancing-768x461.jpg
+
+2.25.21
+
+jinja2.exceptions.UndefinedError
+jinja2.exceptions.UndefinedError: 'None' has no attribute 'group_dance_types'
+
+Traceback (most recent call last)

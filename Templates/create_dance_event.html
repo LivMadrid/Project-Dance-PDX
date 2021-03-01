@@ -23,8 +23,29 @@
             <label>Event Date:</label>
                 <input type="date" name="date" required>
 
-            <label>Event Time:</label>
-                <input type="number" name="time" required>
+            <!-- <label>Event Time:</label>
+                <input type="number" name="time" required> -->
+
+            <label>Event Group Type:</label>
+                <select name= "Group Type" id=' Group Type'>
+                    <option value="salsa">Salsa</option>
+                    <option value="swing">Swing</option>
+                    <option value="blues">Blues</option>
+                    <option value="tango">Tango</option>
+                    <option value="hiphop">Hip Hop</option>
+                </select>
+
+                <label>Event Group Name:</label>
+                <select name= "Group Name" id=' Group Name'>
+                    <option value="portland salsa y bachata dancers">Portland Salsa y Bachata Dancers</option>
+                    <option value="swing pdx">Swing PDX</option>
+                    <option value="blues dancers of pdx">Blues Dancers of PDX</option>
+                    <option value="milongueros pdx">Milongueros PDX</option>
+                    <option value="pdx hip hop">PDX Hip Hop</option>
+                </select>
+
+
+
 
             <label>Is this a reoccuring event?</label>
                 <label>yes</label><input type="radio" id="Yes" name=" reoccuringevent" value="Yes">
@@ -37,7 +58,10 @@
 
   <h2>Navigation</h2>
   <ul>
-    <li><a href="/calendar">See all events coming up in our calendar</a></li>
+    <li><a href="/all_events">See all events coming up in our calendar</a></li>
+    <li><a href="/user_profile">Return to Profile</a></li>
+  
+  </ul>
     
 
     

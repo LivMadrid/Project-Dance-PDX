@@ -32,7 +32,7 @@ def create_group_dance(groupname, grouptype):
 
     return group_dance
 
-def create_dance_event(eventname, city, zipcode, description, date, time, reoccuring_event):
+def create_dance_event(eventname, city, zipcode, description, date, reoccuring_event):
     """Create and return a dance event"""
     #dance_event_photo
 
@@ -41,7 +41,7 @@ def create_dance_event(eventname, city, zipcode, description, date, time, reoccu
                             dance_event_zipcode=zipcode, 
                             dance_event_description=description, 
                             dance_event_date=date, 
-                            dance_event_time=time, 
+                            # dance_event_time=time, 
                             dance_event_reoccuring=reoccuring_event)
                             # dance_event_photo=dance_event_photo)
 
@@ -57,24 +57,26 @@ def return_all_users():
     return all_users
 
 
-def return_all_dance_events(eventname):
+def return_all_dance_events():
     """Returns all events"""
 
     all_events = DanceEvent.query.all()
     return all_events
 #change to limit ? so that only the nameand info shows not tableid number
 
-def return_group_profile(groupname):
-    """Returns group profile page """
+# def return_group_profile(groupname):
+#     """Returns group profile page """
 
-    group = GroupDance.query.filter_by(groupname=group_dance_name).first()
+#     group_profile = GroupDance.query.filter_by(group_dance_name=groupname).first()
 
-    return group
+#     return group_profile
 
-def return_all_groups(groupname):
+def return_all_group_types(group_type):
     """Returns all groups"""
-    all_groups = GroupDance.query.all()
-    return all_groups
+    all_group_types = GroupDance.query
+    if group_type:
+        all_group_types = all_group_types.filter_by(group_dance_types=group_type)
+    return all_group_types
 
 def return_user_profile(username):
     """Display user profile"""
@@ -82,9 +84,15 @@ def return_user_profile(username):
 
     return user
 
+def get_user_groups(): 
+
+    user_groups = DanceGroup.query.filter_by(user_id=userid)
+
+    return user_groups
+
 def return_dance_event(eventname):
 
-    event = DanceEvent.query.filter_by(eventname=dance_event_name).first()
+    event = DanceEvent.query.filter_by(dance_event_name=eventname).first()
 
     return event
 

@@ -2,10 +2,55 @@
     font-family:Verdana, Geneva, Tahoma, sans-serif;
     font-size: 16px
 }
-
+header, nav {
+    text-align: center;
+  }
+  
 
 body { 
     background-image: url("dancefeet1.jpg"); 
     background-position: center center; 
     background-size: 100% 100%; 
 } 
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+/* 
+/* Always set the map height explicitly to define the size of the div
+       /* * element that contains the map. */
+       /* #map {
+        height: 100%;
+      }
+      
+      /* Optional: Makes the sample page fill the window. */
+      /* html,
+      body {
+        height: 100%;
+        margin: 0;
+        padding: 0; */ */
+      } */ */
+
+
+
+      <style>
+  #map {
+    height: 100%;
+  }
+  html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+{
+  map = new google.maps.Map(document.getElementById('map'); {
+  center: {lat: -34.397, lng: 150.644};
+  zoom: 8;
+}
+});
+
+
+
+</style>

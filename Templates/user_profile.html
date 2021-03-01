@@ -26,15 +26,31 @@
          {{user.user_bio}}
 
         <label> Groups</label>
-        
+       
         <label> Events</label>
           {{user.user_events}}
 
     </div>
   </h2>
+  <form action="/all_dance_groups">
+  <div>
+    <label> Join groups to start dancing with your community </label>
+    <input value = "GROUPS" type="submit">
+  </div>
+</form>
+
+  <form action="/all_events">
+  <div>
+    <label>See all events on calendar</label>
+    <input value = "EVENTS" type="submit">
+  </div>
+</form>
 
 
 
+
+
+DISPLAY GROUPS--->  DISPLAY EVENTS 
 
   <h3>Navigation</h3>
   <div>
@@ -48,18 +64,12 @@
       <input value = "Create New Group" type="submit">
     </div></form>
 
-    <form action="/event_calendar">
-      <div>
-        <label>Event Calendar and Map</label>
-        <!-- <a href  -->
-      </div>
-    </form>
-
+    
 
   
   
-    <label>Logout</label>
-      <form action="/" method="POST">
+    
+      <form action="/logout" >
         <button type="submit">Logout</button>
       </form>
   </div>

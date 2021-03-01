@@ -72,6 +72,14 @@ def log_in():
 
 #GET OR POST ? How to do it so it is unique username unique password --- if is good to go pass to user profile page other wise 
 #if not a member then redirects to sign-up page... 
+@app.route('/logout')
+def logout():
+    """User logs out of session"""
+    
+    
+    return redirect('/')
+
+
  
 @app.route('/sign_up')
 def sign_up():
@@ -116,10 +124,14 @@ def profile():
     
     username = session['user']
     user = crud.return_user_profile(username)
+
+    groups = crud.get_user_groups()
+    
+
      
     return render_template('user_profile.html', user=user )
     
-   
+
     ##exisiting user 
     # if  session['user'] = username:
     # if session['user']:
@@ -150,19 +162,19 @@ def create_new_dance_event():
     zipcode = request.form.get('zipcode')
     description = request.form.get('description')
     date = request.form.get('date')
-    time = request.form.get('time')
+    # time = request.form.get('time')
     reoccuring_event = request.form.get('reoccuringevent')
     
     session['event'] = eventname
     print(session['event'])
-    event = crud.create_dance_event(eventname, city, zipcode, description, date, time, reoccuring_event)
+    event = crud.create_dance_event(eventname, city, zipcode, description, date,  reoccuring_event)
 
     if event: #if True: if the event exists already
         flash(f'An event with that name already exists. Try again? ')
         return render_template('event.html', event=event)
         #or better to redirect back to create event page if one already exists?
     else:
-        event = crud.create_dance_event(eventname, city, zipcode, description, date, time, reoccuring_event)
+        event = crud.create_dance_event(eventname, city, zipcode, description, date, reoccuring_event)
         flash('Event created!')
         return render_template('event.html', event=event)
 
@@ -171,7 +183,7 @@ def create_new_dance_event():
 def return_event_profile():
     """Returns an event profile page"""
 
-    # eventname = session['event']
+    #  eventname = session['event']
 
     event = crud.return_dance_event(eventname)
 
@@ -184,13 +196,15 @@ def all_events_return():
     
 
     
-    eventname = session['event']
-    event = crud.return_all_dance_events(eventname)
+    # eventname = session['event']
+    events = crud.return_all_dance_events()
+    print("************************************************************")
+    print(events)
+    print('**************************************************************')
 
-
-    if event:
-        return render_template('all_events.html', event=event)
-
+    if events:
+        return render_template('all_events.html', events=events)
+# evnets=events is creating a main agrument (left hand side) and giving it a value on the right side. 
 
 @app.route('/add_group')
 def add_group():
@@ -220,24 +234,47 @@ def create_group_dance():
        flash('Group created!')
        return render_template('group_dance_page.html', group=group)
 
-@app.route('/group_profile')
-def return_group_profile():
-    """Returns Group Profile"""
 
-    group = crud.return_group_profile(groupname)
+# @app.route('/group_profile')
+# def group_profile():
+#     """Returns Group Profile"""
 
-    return render_template('group_dance_page.html', group=group)
+#     return render_template('group_dance_page.html')
+
+# @app.route('/group_profile')
+# def return_group_profile():
+#     """Returns Group Profile"""
+
+#     groupname = request.args.get('name')
+
+#     group = crud.return_group_profile(groupname)
+
+#     return render_template('group_dance_page.html', group=group)
 
 @app.route('/all_dance_groups')
-def all_dance_groups():
+def return_all_dance_group_types():
     """Display all groups"""
 
-    groupname = session['group']
-    group = crud.return_all_groups(groupname)
+    group_type = request.args.get('type')
+
+    groups = crud.return_all_group_types(group_type)
 
 
-    if group:
-        return render_template('all_groups.html', group=group)
+    if groups:
+        
+        return render_template('all_groups.html', groups=groups)
+
+        #MAKE STHIS A POST REQUEST ???
+
+
+# /FIX ME: Groups aren't being added to the database
+# 1. new users should pick a group-type to be apart of
+#       need to put a group field in the user table --> user can pick one group
+#       <button>pick a group</button>      <button>pick an event</button> 
+#        --> all events posted from                 --> all events render
+#               that group
+# 2. then events from that group-type will be displayed to them
+# 3. Existing users: on their profile page: it should show: what groups they're apart of and what events those groups attend
 
 
 
@@ -253,17 +290,6 @@ def all_dance_groups():
 
 
 
-
-
-
-# @app.route
-
-
-#         # , dancer=user
-
-# # @app.route('/calendar_map')
-# # def calendar_map():
-# #need to make calendar and get google maps API done 
 
 # # # @app.route('/users')
 # # # def all_users():
@@ -277,21 +303,6 @@ def all_dance_groups():
 
 
 
-
-# @app.route('/group_dances_page')
-# def group_dance_page():
-   
-#     return 
-
-#
-
-
-# @app.route('/all_events') 
-# def all_events():
-#     """Display all events (list)"""
-# list_all_events = crud.return_all_dance_events
-# #after MVP this will be a calendar instead of list
-#     return list_all_events
 
 
 

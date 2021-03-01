@@ -74,26 +74,33 @@ class DanceEvent(db.Model):
     dance_event_zipcode = db.Column(db.Integer)
     dance_event_description = db.Column(db.String)
     dance_event_date = db.Column(db.DateTime)
-    dance_event_time = db.Column(db.Integer)
+    # dance_event_time = db.Column(db.Integer)
     dance_event_reoccuring = db.Column(db.String)
     # dance_event_photo = 
     group_dance_id = db.Column(db.Integer, db.ForeignKey('group_dances.group_dance_id'))
     # group_dance_name = db.Column(db.String, db.ForeignKey('group_dances.group_dance_id'), nullable=False)
     # username = db.Column(db.String, db.ForeignKey('users.username')
-    user_id = db.Column(db.Integer, db.ForeignKey('users.user_id') )
+    # user_id = db.Column(db.Integer, db.ForeignKey('users.user_id') )
     # (WHY IS USER_ID HIGHLIGHTED BLUE ???? )
 
      
-    user = db.relationship('User', backref='dance_events')
+    group = db.relationship('GroupDance', backref='dance_events')
+    # from events --> DanceEvent.group = [<Group salsa>, <Group tango>] #all groups assc with event_id
+    # from DanceEvent.group[0].user (user relationship from line 56) = [<User Liv>, <User Lucia>]
+    # DanceEvent.group[0].user[0].user_fname = 'Liv'
+
+    # Group.user => list of users in that group
+
+    # salsa1 = Liv & Lucia
   
  
     def __repr__(self):
         return f'<DanceEvent dance_event_id={self.dance_event_id} dance_event_name={self.dance_event_name}\
         dance_event_city={self.dance_event_city} dance_event_zipcode={self.dance_event_zipcode} dance_event_description={self.dance_event_description}\
-        dance_event_date={self.dance_event_date} dance_event_time={self.dance_event_time}\
+        dance_event_date={self.dance_event_date} \
         dance_event_reoccuring={self.dance_event_reoccuring} >'
 
-
+# dance_event_time={self.dance_event_time}
 # dance_event_photo={self.dance_event_photo
 
 

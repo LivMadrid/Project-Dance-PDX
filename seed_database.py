@@ -47,55 +47,122 @@ def seed_users():
 # username, user_fname, user_lname, email, password, user_bio, user_location, user_events
 
 
-def seed_group_dances():
+# def seed_group_dances():
 
-    group1 = GroupDance(group_dance_name='Portland Salsa y Bachata Dancers', group_dance_types='Salsa, Bachata')
-    group2 = GroupDance(group_dance_name='Portland Hoppers', group_dance_types='East-Coast Swing, Lindy Hop')
-    group3 = GroupDance(group_dance_name='PDX Hip Hop', group_dance_types='Hip Hop')
-    group4 = GroupDance(group_dance_name='Blues Dancers PDX', group_dance_types='Blues')
-    group5 = GroupDance(group_dance_name='Milongueros PDX', group_dance_types='Tango, Milonga, Tango Nuevo')
+#     group1 = GroupDance(group_dance_name='Portland Salsa y Bachata Dancers', group_dance_types='Salsa')
+#     group2 = GroupDance(group_dance_name='Portland Hoppers', group_dance_types='Swing')
+#     group3 = GroupDance(group_dance_name='PDX Hip Hop', group_dance_types='Hip Hop')
+#     group4 = GroupDance(group_dance_name='Blues Dancers PDX', group_dance_types='Blues')
+#     group5 = GroupDance(group_dance_name='Milongueros PDX', group_dance_types='Tango')
 
-    db.session.add(group1)
-    db.session.add(group2)
-    db.session.add(group3)
-    db.session.add(group4)
-    db.session.add(group5)
+#     db.session.add(group1)
+#     db.session.add(group2)
+#     db.session.add(group3)
+#     db.session.add(group4)
+#     db.session.add(group5)
 
+#     db.session.commit()
+
+#     # crud.create_group_dance(group_dance_name, group_dance_types)
+
+# def seed_events(): 
+
+#     # group = group_dance_id 
+    
+#     # event = DanceEvent( name group_dance_id=group.id)
+
+
+
+#     # event1 = (dance_event_name, dance_event_city, dance_event_zipcode,  dance_event_description, dance_event_date, dance_event_time, dance_event_reoccuring=, dance_event_photo
+#     # Salsa Nights SwingLoft Blues Boogie Blues PDX LindyTime Milonga Canaro Milonga Sentimental Milonga Noches Azul QuestLove Hip Hop
+#     event1 = DanceEvent(dance_event_name='Salsa Nights', dance_event_city='Portland', dance_event_zipcode='97201', dance_event_description='Salsa y Bachata! Beginner class starts at 7pm. Intermediate at 7:30. Social Dancing from 8-11:30! Come enjoy with us', dance_event_date='2/28/2021', dance_event_time='7', dance_event_reoccuring='Yes' )
+#     event2 =  DanceEvent(dance_event_name='SwingLoft', dance_event_city='Portland', dance_event_zipcode='97217', dance_event_description='East Coast Swing! Beginner class starts at 6pm. Intermediate at 7:00. Social Dancing from 8-11:30! Come dance till you drop!', dance_event_date='3/8/2021', dance_event_time='6', dance_event_reoccuring='Yes' )
+#     event3 =  DanceEvent(dance_event_name='LindyTime', dance_event_city='Portland', dance_event_zipcode='97201', dance_event_description='LindyHop weekly classes! Beginner class 2pm-3pm. Intermediate at 3:15-5pm. Practice, Practice, Practice!', dance_event_date='3/7/2021', dance_event_time='2', dance_event_reoccuring='Yes' )
+#     event4 = DanceEvent(dance_event_name='Blues Boogie', dance_event_city='Portland', dance_event_zipcode='97045', dance_event_description='Blues Social! Every first Saturday of the Month. Beginner class starts at 7pm. Intermediate at 7:30. Social Dancing from 8pm-1am!', dance_event_date='3/6/2021', dance_event_time='7', dance_event_reoccuring='Yes' )
+#     event5 = DanceEvent(dance_event_name='Blues PDX', dance_event_city='Portland', dance_event_zipcode='97201', dance_event_description='Blues Lessons/Practica! Every Tuesday night. Beginner class starts at 5pm. Intermediate at 6:00. Practice Dancing from 7-8:30', dance_event_date='3/9/2021', dance_event_time='5', dance_event_reoccuring='Yes' )
+#     event6 = DanceEvent(dance_event_name='Milonga Noches Azul', dance_event_city='Portland', dance_event_zipcode='97232', dance_event_description='Monthly Milonga Every Fourth Satuday. Quick Review class at 8. Milonga 8:30pm-2am - refreshments provided. Dress to impress', dance_event_date='3/27/2021', dance_event_time='8', dance_event_reoccuring='Yes' )
+#     event7 = DanceEvent(dance_event_name='Milonga Canaro', dance_event_city='Portland', dance_event_zipcode='97222', dance_event_description='Biweekly Friday Night Milonga. Beginner class starts at 7pm. Intermediate at 7:30. Social Dancing from 8pm-1am!', dance_event_date='3/5/2021', dance_event_time='7', dance_event_reoccuring='Yes' )
+#     event8 = DanceEvent(dance_event_name='Milonga Sentimental', dance_event_city='Portland', dance_event_zipcode='97218', dance_event_description=' 2nd Saturday Milonga. No classes. Tango Nuevo and Milonguero Tandas! Bring a snack to share! Social Dancing from 8pm-2am!', dance_event_date='3/13/2021', dance_event_time='8', dance_event_reoccuring='Yes' )
+#     event9 = DanceEvent(dance_event_name='QuestLove Hip Hop', dance_event_city='Portland', dance_event_zipcode='97266', dance_event_description='Weekly classes every Tuesday and Thursday 7pm Sharp! Bring a water bottle and comfortable clothes ', dance_event_date=None , dance_event_time='7', dance_event_reoccuring='Yes' )
+#     event10 = DanceEvent(dance_event_name='Hip Hop Duels', dance_event_city='Portland', dance_event_zipcode='97266', dance_event_description='Come show off your moves in a duel competition! 8pm March 20th! RSVP ', dance_event_date='3/13/2021', dance_event_time='8', dance_event_reoccuring='No' )
+
+#     db.session.add(event1)
+#     db.session.add(event2)
+#     db.session.add(event3)
+#     db.session.add(event4)
+#     db.session.add(event5)
+#     db.session.add(event6)
+#     db.session.add(event7)
+#     db.session.add(event8)
+#     db.session.add(event9)
+#     db.session.add(event10)
+
+#     db.session.commit()
+
+# #     # crud.create_dance_event(dance_event_name, dance_event_city, dance_event_zipcode, dance_event_description, dance_event_date, dance_event_time, dance_event_reoccuring)
+
+
+
+def create_record(record):
+    db.session.add(record)
     db.session.commit()
 
-    # crud.create_group_dance(group_dance_name, group_dance_types)
 
-def seed_events(): 
-    # event1 = (dance_event_name, dance_event_city, dance_event_zipcode,  dance_event_description, dance_event_date, dance_event_time, dance_event_reoccuring=, dance_event_photo
-    # Salsa Nights SwingLoft Blues Boogie Blues PDX LindyTime Milonga Canaro Milonga Sentimental Milonga Noches Azul QuestLove Hip Hop
-    event1 = DanceEvent(dance_event_name='Salsa Nights', dance_event_city='Portland', dance_event_zipcode='97201', dance_event_description='Salsa y Bachata! Beginner class starts at 7pm. Intermediate at 7:30. Social Dancing from 8-11:30! Come enjoy with us', dance_event_date='2/28/2021', dance_event_time='7', dance_event_reoccuring='Yes' )
-    event2 =  DanceEvent(dance_event_name='SwingLoft', dance_event_city='Portland', dance_event_zipcode='97217', dance_event_description='East Coast Swing! Beginner class starts at 6pm. Intermediate at 7:00. Social Dancing from 8-11:30! Come dance till you drop!', dance_event_date='3/8/2021', dance_event_time='6', dance_event_reoccuring='Yes' )
-    event3 =  DanceEvent(dance_event_name='LindyTime', dance_event_city='Portland', dance_event_zipcode='97201', dance_event_description='LindyHop weekly classes! Beginner class 2pm-3pm. Intermediate at 3:15-5pm. Practice, Practice, Practice!', dance_event_date='3/7/2021', dance_event_time='2', dance_event_reoccuring='Yes' )
-    event4 = DanceEvent(dance_event_name='Blues Boogie', dance_event_city='Portland', dance_event_zipcode='97045', dance_event_description='Blues Social! Every first Saturday of the Month. Beginner class starts at 7pm. Intermediate at 7:30. Social Dancing from 8pm-1am!', dance_event_date='3/6/2021', dance_event_time='7', dance_event_reoccuring='Yes' )
-    event5 = DanceEvent(dance_event_name='Blues PDX', dance_event_city='Portland', dance_event_zipcode='97201', dance_event_description='Blues Lessons/Practica! Every Tuesday night. Beginner class starts at 5pm. Intermediate at 6:00. Practice Dancing from 7-8:30', dance_event_date='3/9/2021', dance_event_time='5', dance_event_reoccuring='Yes' )
-    event6 = DanceEvent(dance_event_name='Milonga Noches Azul', dance_event_city='Portland', dance_event_zipcode='97232', dance_event_description='Monthly Milonga Every Fourth Satuday. Quick Review class at 8. Milonga 8:30pm-2am - refreshments provided. Dress to impress', dance_event_date='3/27/2021', dance_event_time='8', dance_event_reoccuring='Yes' )
-    event7 = DanceEvent(dance_event_name='Milonga Canaro', dance_event_city='Portland', dance_event_zipcode='97222', dance_event_description='Biweekly Friday Night Milonga. Beginner class starts at 7pm. Intermediate at 7:30. Social Dancing from 8pm-1am!', dance_event_date='3/5/2021', dance_event_time='7', dance_event_reoccuring='Yes' )
-    event8 = DanceEvent(dance_event_name='Milonga Sentimental', dance_event_city='Portland', dance_event_zipcode='97218', dance_event_description=' 2nd Saturday Milonga. No classes. Tango Nuevo and Milonguero Tandas! Bring a snack to share! Social Dancing from 8pm-2am!', dance_event_date='3/13/2021', dance_event_time='8', dance_event_reoccuring='Yes' )
-    event9 = DanceEvent(dance_event_name='QuestLove Hip Hop', dance_event_city='Portland', dance_event_zipcode='97266', dance_event_description='Weekly classes every Tuesday and Thursday 7pm Sharp! Bring a water bottle and comfortable clothes ', dance_event_date=None , dance_event_time='7', dance_event_reoccuring='Yes' )
-    event10 = DanceEvent(dance_event_name='Hip Hop Duels', dance_event_city='Portland', dance_event_zipcode='97266', dance_event_description='Come show off your moves in a duel competition! 8pm March 20th! RSVP ', dance_event_date='3/13/2021', dance_event_time='8', dance_event_reoccuring='No' )
 
-    db.session.add(event1)
-    db.session.add(event2)
-    db.session.add(event3)
-    db.session.add(event4)
-    db.session.add(event5)
-    db.session.add(event6)
-    db.session.add(event7)
-    db.session.add(event8)
-    db.session.add(event9)
-    db.session.add(event10)
+def seed_groups_with_events():
 
-    db.session.commit()
+    salsa_group = GroupDance(group_dance_name='Portland Salsa y Bachata Dancers', group_dance_types='Salsa')
+    create_record(salsa_group)
 
-#     # crud.create_dance_event(dance_event_name, dance_event_city, dance_event_zipcode, dance_event_description, dance_event_date, dance_event_time, dance_event_reoccuring)
+    salsa_event = DanceEvent(group_dance_id = salsa_group.group_dance_id, dance_event_name='Salsa Nights', dance_event_city='Portland', dance_event_zipcode='97201', dance_event_description='Salsa y Bachata! Beginner class starts at 7pm. Intermediate at 7:30. Social Dancing from 8-11:30! Come enjoy with us', dance_event_date='2/28/2021', dance_event_reoccuring='Yes')
+    create_record(salsa_event)
+
+    swing_group = GroupDance(group_dance_name= 'Swing PDX ', group_dance_types= 'Swing')
+    create_record(swing_group)
+
+    swing_event = DanceEvent(group_dance_id = swing_group.group_dance_id, dance_event_name='SwingLoft', dance_event_city='Portland', dance_event_zipcode='97201',  dance_event_description='East Coast Swing! Beginner class starts at 6pm. Intermediate at 7:00. Social Dancing from 8-11:30! Come dance till you drop!', dance_event_date='3/8/2021', dance_event_reoccuring='Yes' )
+    create_record(swing_event)
+
+    swing_event = DanceEvent(group_dance_id = swing_group.group_dance_id, dance_event_name='LindyTime', dance_event_city='Portland', dance_event_zipcode='97201', dance_event_description='LindyHop weekly classes! Beginner class 2pm-3pm. Intermediate at 3:15-5pm. Practice, Practice, Practice!', dance_event_date='3/7/2021',  dance_event_reoccuring='Yes' )
+    create_record(swing_event)
+
+    blues_group = GroupDance(group_dance_name= 'Blues Dancers of PDX ', group_dance_types= 'Blues')
+    create_record(blues_group)
+
+    blues_event = DanceEvent(group_dance_id = blues_group.group_dance_id, dance_event_name='Blues Boogie', dance_event_city='Portland', dance_event_zipcode='97045', dance_event_description='Blues Social! Every first Saturday of the Month. Beginner class starts at 7pm. Intermediate at 7:30. Social Dancing from 8pm-1am!', dance_event_date='3/6/2021',  dance_event_reoccuring='Yes' )
+    create_record(blues_event)
+
+    blues_event = DanceEvent(group_dance_id = blues_group.group_dance_id, dance_event_name= 'Blues PDX', dance_event_city='Portland', dance_event_zipcode='97201', dance_event_description='Blues Lessons/Practica! Every Tuesday night. Beginner class starts at 5pm. Intermediate at 6:00. Practice Dancing from 7-8:30', dance_event_date='3/9/2021', dance_event_reoccuring='Yes' )
+    create_record(blues_event)
+
+    tango_group = GroupDance(group_dance_name= 'Milongueros PDX', group_dance_types= 'Tango')
+    create_record(tango_group)
+
+    tango_event = DanceEvent(group_dance_id = tango_group.group_dance_id, dance_event_name='Milonga Noches Azul', dance_event_city='Portland', dance_event_zipcode='97232', dance_event_description='Monthly Milonga Every Fourth Satuday. Quick Review class at 8. Milonga 8:30pm-2am - refreshments provided. Dress to impress', dance_event_date='3/27/2021', dance_event_reoccuring='Yes' )
+    create_record(tango_event)
+
+    tango_event = DanceEvent(group_dance_id = tango_group.group_dance_id, dance_event_name='Milonga Canaro', dance_event_city='Portland', dance_event_zipcode='97222', dance_event_description='Biweekly Friday Night Milonga. Beginner class starts at 7pm. Intermediate at 7:30. Social Dancing from 8pm-1am!', dance_event_date='3/5/2021', dance_event_reoccuring='Yes' )
+    create_record(tango_event)
+
+    tango_event = DanceEvent(group_dance_id = tango_group.group_dance_id, dance_event_name='Milonga Sentimental', dance_event_city='Portland', dance_event_zipcode='97218', dance_event_description=' 2nd Saturday Milonga. No classes. Tango Nuevo and Milonguero Tandas! Bring a snack to share! Social Dancing from 8pm-2am!', dance_event_date='3/13/2021', dance_event_reoccuring='Yes' )
+    create_record(tango_event)
+
+    hiphop_group = GroupDance(group_dance_name= 'PDX Hip Hop ', group_dance_types= 'Hip Hop')
+    create_record(hiphop_group)
+     
+    hiphop_event = DanceEvent(group_dance_id = hiphop_group.group_dance_id, dance_event_name= 'QuestLove Hip Hop', dance_event_city='Portland', dance_event_zipcode='97266', dance_event_description='Weekly classes every Tuesday and Thursday 7pm Sharp! Bring a water bottle and comfortable clothes ', dance_event_date=None , dance_event_reoccuring='Yes' )
+    create_record(hiphop_event)
+
+    hiphop_event = DanceEvent(group_dance_id = hiphop_group.group_dance_id, dance_event_name='Hip Hop Duels', dance_event_city='Portland', dance_event_zipcode='97266', dance_event_description='Come show off your moves in a duel competition! 8pm March 20th! RSVP ', dance_event_date='3/13/2021', dance_event_reoccuring='No' )
+    create_record(hiphop_event)
+
+
+
 
 
 
 seed_users()
-seed_group_dances()
-seed_events()
+# seed_group_dances()
+# seed_events()
+
+seed_groups_with_events()

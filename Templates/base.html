@@ -5,19 +5,114 @@
     <meta name="viewport" content="width=device-width">
     <style > 
        body  { font-family:'Courier New', Courier, monospace;
-              background: rgba(123, 211, 223, 0.986);
-              background-image: url(https://i.pinimg.com/originals/a5/a4/6e/a5a46e6a3945b65665f33791a00c3415.jpg);
-              height: 50px;
-              background-position: center;
+              background: rgba(168, 245, 206, 0.986);
+              background-image: url(https://static.wixstatic.com/media/89afb8_72bd0872084d4710bf65f888bcb4c143~mv2_d_4608_2290_s_2.jpeg);
+              height:20px;
+              background-position: top;
               background-repeat: no-repeat;
-              background-size: cover; 
+              background-size: 100% 70%; 
               position: relative;
+              text-align: center;
+              position: bottom;
+              top: 50%;
+              left: 50%;
+              transform: translate(-50%, -50%);
+              color: rgb(168, 245, 206);
             }
             
+      
+            #map {
+            height: 75%;
+            }
+            html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            }
+
 
               </style> 
 
- 
+    <script>function initMap() {
+    // The location of PDX
+    const portland_or = { lat:  45.523064, lng: -122.676483 };
+    // The map, centered at Portland, OR
+    const map = new google.maps.Map(document.getElementById("map"), {
+    zoom: 15,
+    center: portland_or,
+    });
+    // The marker, positioned at Uluru
+    const pdxMarker = new google.maps.Marker({
+    position: portland_or,
+    title: "PDX",
+    map: basicmap,
+    icon: " "
+    });
+    }
+    pdxMarker.addListener('click', () => {
+      alert('Dancing Time!');
+    });
+//     const pdxInfo = new google.maps.InfoWindow({
+//       content: '<h1>Portland!</h1>'
+//     });
+
+//     pdxInfo.open(basicMap, pdxMarker);
+
+//     const locations = [
+//       {
+//         name: "Swing PDX",
+//         coords: {
+//           lat:  45.5207,
+//           lng: -122.6756,
+//         }
+//       }
+//     ];
+
+//     const markers = [];
+//     for (const location of locations) {
+//       markers.push(new google.maps.Marker({
+//       position: location.coords,
+//       title: location.name,
+//       map: basicMap,
+//       icon: {  // custom icon
+//         url: '/static/img/marker.svg',
+//         scaledSize: {
+//           width: 30,
+//           height: 30
+//           }
+//         }
+//      }));
+//     }
+
+
+  
+//     for (const marker of markers) {
+//     const markerInfo = (`
+//       <h1>${marker.title}</h1>
+//       <p>
+//         Located at: <code>${marker.position.lat()}</code>,
+//         <code>${marker.position.lng()}</code>
+//       </p>
+//     `);
+
+//     const infoWindow = new google.maps.InfoWindow({
+//       content: markerInfo,
+//       maxWidth: 200
+//     });
+
+//     marker.addListener('click', () => {
+//       infoWindow.open(basicMap, marker);
+//     });
+//   }
+// }
+
+
+
+
+
+
+
+    </script>
     
 
     <script

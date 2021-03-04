@@ -26,18 +26,49 @@
          {{user.user_bio}}
 
         <label> Groups</label>
-       
+        <form action="/user_profile" method="POST">
+          What groups would you like to join?
+        
+          <input type="checkbox"  name='Salsa' value="Salsa">
+          <label>Salsa</label>
+        
+          <input type="checkbox" name="Swing"  value="Swing">
+          <label>Swing</label>
+        
+          <input type="checkbox" name="Blues" value="Blues">
+          <label>Blues</label>
+
+          <input type="checkbox" name="Tango" value="Tango">
+          <label>Tango</label>
+
+          <input type="checkbox" name="Hip Hop" value="Hip Hop">
+          <label>Hip Hop</label>
+
+          <button type="submit">Submit</button>
+
+        </form>
+         
+    
+        <label>Member of:</label>
+        <div>
+          {% for name in groupnames%}
+          <li>
+            {{name}} IS THIS WORKING ????????????????????
+          </li>
+          {%endfor%}
+        </div>
+        
         <label> Events</label>
           {{user.user_events}}
 
     </div>
   </h2>
-  <form action="/all_dance_groups">
+  <!-- <form action="/all_dance_groups">
   <div>
     <label> Join groups to start dancing with your community </label>
     <input value = "GROUPS" type="submit">
   </div>
-</form>
+</form> -->
 
   <form action="/all_events">
   <div>

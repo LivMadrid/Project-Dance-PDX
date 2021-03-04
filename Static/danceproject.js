@@ -42,3 +42,18 @@ function initMap() {
     icon: " "
   });
 }
+
+
+// GROUP HANDLER FUNCTIONS !
+
+const button = document.querySelector('#joingroup');
+
+button.addEventListener('click', () => {
+  alert('You are now a group member');
+});
+
+
+$('#joingroup').on('click', () => {
+  console.log("you clicked the button!")
+})
+

@@ -22,15 +22,11 @@
   <li>
   {{group.group_dance_types}}<li>{{group.group_dance_name}}</li>
   </li>
-  <div>
-  <li>
-    <input value="Join Group" type="submit">
-    <form action="/group_profile" >
-      <button type="submit">Group Profile</button>
-    </form>
-    </div>
-  </li>
-</div>
+
+
+    <li><a href="/group_profile/{{group.group_dance_types}}">Group Profile</a></li>
+  
+
 </ul>
   {% endfor %}
 
@@ -40,6 +36,8 @@
     <li><a href="/user_profile">Return to Profile</a></li>
   
   </ul>
+
+  <script src="/static/danceproject.js"></script>
 {% endblock %}
 
 </body> 

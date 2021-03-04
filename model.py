@@ -53,13 +53,32 @@ class GroupDance(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('users.user_id')) 
     #user_id references to table group_dances as it is the foreign key
 
-    user = db.relationship('User', backref='group_dances')
+    #users = db.relationship('User', backref='group_dances')
 
     
     def __repr__(self):
         return f'<GroupDance group_dance_id={self.group_dance_id} group_dance_name={self.group_dance_name}\
         group_dance_types={self.group_dance_types}>'
 
+class GroupUser(db.Model):
+
+    __tablename__ = "groupusers"
+
+    id = db.Column(db.Integer,
+                        autoincrement=True, 
+                        primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.user_id')) 
+    group_id = db.Column(db.Integer, db.ForeignKey('group_dances.group_dance_id'))
+    event_id = db.Column(db.Integer, db.ForeignKey('dance_events.dance_event_id'))
+
+    users = db.relationship('User', backref='groupusers')
+    groups = db.relationship('GroupDance', backref='groupusers')
+    events = db.relationship('DanceEvent', backref='groupusers')
+
+    # SalsaLiv = GroupUser(user_id=session['user'].user_id)
+    
+    def __repr__(self):
+        return f'<Groupuser user_id={self.user_id} group_id={self.group_id} event_id={self.event_id}>' 
     
 class DanceEvent(db.Model):
     """ A dance event"""

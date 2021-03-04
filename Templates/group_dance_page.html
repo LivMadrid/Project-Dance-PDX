@@ -12,18 +12,14 @@
 <h2>
   <div>
     <label> Group Info</label>
-
-    {{group.group_dance_name}}
-
-    
-
-
+   
   </div>
 
-
+  {%for user in users %}
+  {{user.username}}
+  {{user.user_city}}
   
-  
-  
+  {%endfor%}
 
   <h2>Navigation</h2>
   <ul>

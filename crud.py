@@ -1,6 +1,6 @@
 """CRUD operations."""
 
-from model import db, User, GroupDance, DanceEvent, connect_to_db
+from model import db, User, GroupDance, DanceEvent, GroupUser, connect_to_db
 import datetime
 
 def create_user(username, user_fname, lname, email, password, user_bio, user_city, user_zipcode, user_events):
@@ -78,17 +78,95 @@ def return_all_group_types(group_type):
         all_group_types = all_group_types.filter_by(group_dance_types=group_type)
     return all_group_types
 
+
+def get_group_id(group_type):
+    "Returns group selected by checkbox on user profile"
+    group = GroupDance.query
+    if group_type:
+        groups = group.filter_by(group_dance_types=group_type).one()
+    return groups
+
 def return_user_profile(username):
     """Display user profile"""
     user = User.query.filter_by(username=username).first()
 
     return user
 
-def get_user_groups(): 
 
-    user_groups = DanceGroup.query.filter_by(user_id=userid)
+def return_group_profile(grouptype):
+    """Display Group Profile""" 
 
-    return user_groups
+    group = GroupDance.query.filter_by(group_dance_types=grouptype).first()
+
+    return group
+
+
+
+# def get_user_groups(user_id): 
+
+#     user_groups = GroupDance.query.filter_by(user_id=user_id).all()
+
+#     return user_groups
+
+def creategroupuser(userid, groupid):
+
+    check = GroupUser.query.filter_by(user_id=userid, group_id=groupid).first()
+    if check:
+        print(check, "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$check")
+        return check
+    else:
+        groupuser = GroupUser(user_id=userid, group_id=groupid)
+        print(groupuser, "##########################################groupuser#################################")
+        db.session.add(groupuser)
+        db.session.commit()
+    
+        return groupuser 
+
+
+def return_all_users_in_group(group):
+    """Displays all users in a group"""
+
+    # groupusers = User.query.group_by(username=username).all()
+
+        # # all_users = User.query.all()
+        # print(all_users,"******************************")
+
+    print(group, '##############This is GROUP##################')
+    users_in_group_objects = GroupUser.query.filter_by(group_id=group.group_dance_id).all()
+
+    print(users_in_group_objects)
+
+    users = []
+
+    for users_in_group_object in users_in_group_objects:
+        # username = User.query.get(users_in_group_object.user_id)
+        # usernames.append(username.username)
+        users.append(users_in_group_object.users)
+    print(users)
+
+    return users
+
+
+def return_user_groups(user):
+    """displays group that user is a part of """
+    print(user, "**************************THIS IS PRINT GROUPUSER******************************")
+    group_user_objects = GroupUser.query.filter_by(user_id=user.user_id).all()
+    # group_user_objects = [] 
+    # group_user_objects.append(objects)
+    print (group_user_objects)
+    groupnames = []
+
+    for group_user_object in group_user_objects:
+        groupname = GroupDance.query.get(group_user_object.group_id)
+        groupnames.append(groupname.group_dance_name)
+     
+    print(groupnames)
+    return groupnames
+    
+# def all_users_in_group():
+
+#     all_users_in_group =
+
 
 def return_dance_event(eventname):
 

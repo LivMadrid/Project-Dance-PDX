@@ -51,12 +51,13 @@ def get_login_info():
     # user_profile_data = crud.return_user_profile(username)
     # #filter(User.username)
     # filter_by(username)
-
+    groupuser = ' '
+    groupnames = ' '
     # if request.methods == 'POST': #maybe redundant
- 
+    groups = []
     if user:
         flash('logged in as {username}')
-        return render_template('user_profile.html', user= user)
+        return render_template('user_profile.html', user= user, groups=groups, groupuser=groupuser, groupnames=groupnames)
     else:
         flash('incorrect password')
         return redirect('/login')
@@ -102,6 +103,9 @@ def get_sign_up_info():
     zipcode = request.form.get('zipcode')
     events = request.form.get('events')
 
+#     # user_groups = " " #user_groups=user_groups
+#     user_groups = ' '
+# user_groups=user_groups
     session['user'] = username # make this a dictionary 
     print(session['user'])
     existing_user = crud.return_user_profile(username) 
@@ -116,21 +120,126 @@ def get_sign_up_info():
         flash('Account created! ')
         return render_template('user_profile.html', user=user)
 
-       
 @app.route('/user_profile')
+def show_profile():
+    """Display user profile page"""
+
+ 
+    username = session['user']
+    user = crud.return_user_profile(username)
+    groupnames = crud.return_user_groups(user) 
+
+    return render_template('user_profile.html', user=user, groupnames=groupnames)
+
+@app.route('/user_profile', methods=['GET','POST'])
 def profile():
     """User Profile Page"""
     
     
     username = session['user']
     user = crud.return_user_profile(username)
+    print(user, '****************************************')
+    # groups = request.form.getlist('name')
+    # print(groups, '$$$$$$$$$$$$$$$$$$')
+    # group_type = request.form.get('type')
+    
+   
+    # if groups:
+    #     print(groups)
+    # #     print('Salsa')
+    groupuser = ' '
+    # user_groups = ' '
+    if request.form.getlist('Salsa'):
+        salsa = crud.get_group_id('Salsa')
+        # print(salsa)
+        #print(groups)
+        salsa_id = salsa.group_dance_id #GROUP DANCE table 
+        # print(salsa_id)
+        userid = user.user_id
+        # print(userid)
+        groupuser = crud.creategroupuser(userid, salsa_id)
 
-    groups = crud.get_user_groups()
+    
+    if request.form.getlist('Swing'):
+        swing = crud.get_group_id('Swing')
+
+        print(swing)
+        #print(groups)
+        swing_id = swing.group_dance_id #GROUP DANCE table 
+
+        print(swing_id)
+
+        userid = user.user_id
+
+        print(userid)
+         
+        groupuser = crud.creategroupuser(userid, swing_id)
+
+   
+
+    if request.form.getlist('Blues'):
+        blues = crud.get_group_id('Blues')
+        # print(blues)
+        #print(groups)
+        blues_id = blues.group_dance_id #GROUP DANCE table 
+        # print(blues_id)
+        userid = user.user_id
+        # print(userid)
+        groupuser = crud.creategroupuser(userid, blues_id) 
+    
     
 
+    if request.form.getlist('Tango'):
+        tango = crud.get_group_id('Tango')
+        # print(tango)
+        #print(groups)
+        tango_id = tango.group_dance_id #GROUP DANCE table 
+        # print(tango_id)
+        userid = user.user_id
+        # print(userid)
+        groupuser = crud.creategroupuser(userid, tango_id)
+
+    
+
+    if request.form.getlist('Hip Hop'):
+        hiphop = crud.get_group_id('Hip Hop')
+        # print(hiphop)
+        #print(groups)
+        hiphop_id = hiphop.group_dance_id #GROUP DANCE table 
+        # print(hiphop_id)
+        userid = user.user_id
+        # print(userid)
+        groupuser = crud.creategroupuser(userid, hiphop_id)
+
+    
+    groupnames = crud.return_user_groups(user) 
+
+    # <group_id = 1 user_id = 1 event_id =1>
+    
+    # else:
+    #     return f'You are not apart of any groups yet'
+        # user_groups = crud.return_user_groups(groupuser) #user_groups=user_groups
+
+    return render_template('user_profile.html', user=user, groupnames=groupnames)
+    # groups = crud.get_user_groups(user.user_id)
+    #crud if tango - get group by name crd. get group by name group id -groupname- Groupuser realtionship
+    
      
-    return render_template('user_profile.html', user=user )
+   
     
+    
+
+
+# <option> drop down of dance groups on user profile page (query all groups)
+#   user selects value (group) GET REQUEST 
+#   request.get.args (value/group)from dropdown
+#   in data model send user_id in session
+#   group id after groupname CRUD creategroupuser(user_id,group_id)
+
+
+
+
+
 
     ##exisiting user 
     # if  session['user'] = username:
@@ -218,7 +327,7 @@ def create_group_dance():
     """Get group info from form and create group"""
 
     groupname = request.form.get('groupname')
-    grouptype= request.form.get('grouptype')
+    grouptype = request.form.get('grouptype')
     
     
     session['group'] = groupname
@@ -241,15 +350,23 @@ def create_group_dance():
 
 #     return render_template('group_dance_page.html')
 
-# @app.route('/group_profile')
-# def return_group_profile():
-#     """Returns Group Profile"""
+@app.route('/group_profile/<grouptype>')
+def return_group_profile_page(grouptype):
+    """Returns Group Profile"""
 
-#     groupname = request.args.get('name')
+    # grouptype = request.args.get('type')
+    # # # group = GroupDance.query.filter_by(group_dance_types=group_type).all()
+    # group = crud.return_group_profile(grouptype)
+    # # # all_users = crud.return_all_users_in_group(group)  all_users=all_users 
+    # print(group)
+    # all_users = crud.return_all_users_in_group()
+    # grouptype = request.args.get('grouptype')
+    group = crud.return_group_profile(grouptype)
 
-#     group = crud.return_group_profile(groupname)
-
-#     return render_template('group_dance_page.html', group=group)
+    users = crud.return_all_users_in_group(group)
+    
+        
+    return render_template('group_dance_page.html', group=group, users=users )
 
 @app.route('/all_dance_groups')
 def return_all_dance_group_types():

@@ -17,14 +17,26 @@
 
   </div>
 
+ 
+  </div>
   {% for group in groups %}
   <ul>
   <li>
-  {{group.group_dance_types}}<li>{{group.group_dance_name}}</li>
-  </li>
+
+    <div class="card" style="width: 18rem;">
+      <div class="card-body">
+        <h5 class="card-title">{{group.group_dance_types}}</h5>
+        <h6 class="card-subtitle mb-2 text-muted">{{group.group_dance_name}}</h6>
+        <p class="card-text"></p>
+        <a href="/group_profile/{{group.group_dance_types}}" class="card-link">Group Profile</a>
+      </div>
+
+  
+ 
+  
 
 
-    <li><a href="/group_profile/{{group.group_dance_types}}">Group Profile</a></li>
+    
   
 
 </ul>

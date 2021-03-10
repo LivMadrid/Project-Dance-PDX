@@ -57,3 +57,24 @@ $('#joingroup').on('click', () => {
   console.log("you clicked the button!")
 })
 
+
+
+
+function get_address_data() {
+  $('#dance_event_location').on('Submit', function(evt){
+    evt.preventDefault();
+  
+    address = $(`#address_post`).val()
+  $.get(`/all_events/${address}`, function(res) {
+    address= res.json():
+    console.log(address);
+  
+  
+  
+  
+  $(document).ready()
+
+  
+}
+
+

@@ -32,13 +32,12 @@ def create_group_dance(groupname, grouptype):
 
     return group_dance
 
-def create_dance_event(eventname, city, zipcode, description, date, reoccuring_event):
+def create_dance_event(eventname, location, description, date, reoccuring_event):
     """Create and return a dance event"""
     #dance_event_photo
 
     dance_event = DanceEvent(dance_event_name=eventname,
-                            dance_event_city=city,
-                            dance_event_zipcode=zipcode, 
+                            dance_event_location=location,
                             dance_event_description=description, 
                             dance_event_date=date, 
                             # dance_event_time=time, 
@@ -173,6 +172,13 @@ def return_dance_event(eventname):
     event = DanceEvent.query.filter_by(dance_event_name=eventname).first()
 
     return event
+
+def return_dance_event_locations(locations):
+    """Returns all the dance event locations for google map API"""
+
+    event_locations=DanceEvent.query.filter_by(dance_event_location=locations).all
+
+    return event_locations
 
 # def get_user_by_username(username): #user exists 
 #     """Return a user by email."""

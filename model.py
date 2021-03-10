@@ -89,8 +89,8 @@ class DanceEvent(db.Model):
                         autoincrement=True, 
                         primary_key=True)
     dance_event_name = db.Column(db.String)
-    dance_event_city = db.Column(db.String)
-    dance_event_zipcode = db.Column(db.Integer)
+    # dance_event_city = db.Column(db.String)
+    dance_event_location = db.Column(db.String)
     dance_event_description = db.Column(db.String)
     dance_event_date = db.Column(db.DateTime)
     # dance_event_time = db.Column(db.Integer)
@@ -111,11 +111,12 @@ class DanceEvent(db.Model):
     # Group.user => list of users in that group
 
     # salsa1 = Liv & Lucia
-  
+
+  # dance_event_city={self.dance_event_city}
  
     def __repr__(self):
         return f'<DanceEvent dance_event_id={self.dance_event_id} dance_event_name={self.dance_event_name}\
-        dance_event_city={self.dance_event_city} dance_event_zipcode={self.dance_event_zipcode} dance_event_description={self.dance_event_description}\
+        dance_event_location={self.dance_event_location} dance_event_description={self.dance_event_description}\
         dance_event_date={self.dance_event_date} \
         dance_event_reoccuring={self.dance_event_reoccuring} >'
 

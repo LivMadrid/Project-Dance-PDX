@@ -14,20 +14,34 @@
     {% block body %}
     
     <h1>PDX DANCE EVENTS: </h1>
-    
+
       <ul>   Group Events
         {% for event in events %}
         
+        <div class="row">
+          <div class="card-deck">
+            <div class="card" style="width: 18rem">
+              <img src="https://images.unsplash.com/photo-1504609813442-a8924e83f76e?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" class="card-img-top" alt="...">
+                <h2 class="card-title">{{event.dance_event_name}}</h2>
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item"> {{event.dance_event_description}}</li>
+                    <li class="list-group-item">{{event.dance_event_date}}</li>
+                    <li class="list-group-item"> {{event.dance_event_location}}</li>
+                  </ul>
+                <div>
+                  <button type="button">Going!</button>
+                  <button type="button">Interested!</button>
+                </div>
+              <a href="" class="card-link"></a>
+          </div>
+        </div>
+      </div>
+   
 
-        
-
-            {{event.group.group_dance_name | default('NONE', boolean=true)}}
-            <div>
-                <button type="button">Going!</button>
-                <button type="button">Interested!</button>
-            </div>
-          <li>{{event.dance_event_name}} :{{event.dance_event_description}}, {{event.dance_event_date}}</li>
-      
+            <!-- {{event.group.group_dance_name | default('NONE', boolean=true)}} -->
+           
+          <!-- <li>{{event.dance_event_name}} :{{event.dance_event_description}}, {{event.dance_event_date}}, {{event.dance_event_location}}</li>
+       -->
          
        
           
@@ -37,16 +51,100 @@
       </ul>
     
     
-        <div id="map">    <script
-          src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC389BQpOUF3nQFHc7qky-pJoVMkdJo2Vo&callback=initMap&libraries=&v=weekly"
-          async>
-      
+    <div id="map" style="height:100%;"></div>
+
         
-        </script> 
-                    </div>
+    <script>
+      console.log('JS IS WORKING!')
+      
+      let event_object = {{ event_object|safe }}
+      console.log(event_object, '====== EVENT OBJECT ======"')
+      console.log(Object.values(event_object), '&&&&& EVENT OBJECT VALUES &&&&&')
+
+      // let addresses = $('#allevents').data('addresses');
+      // console.log(addresses)
+
+      function initMap() {
+        // The location of PDX
+        const portland_or = {lat: 45.523064, lng: -122.676483};
+        // The map, centered at Portland, OR
+        const map = new google.maps.Map(document.getElementById("map"), {
+          zoom: 15,
+          center: portland_or,
+        });
+        // The marker, positioned in portland
+        // addresses = events.map((event) => event.dance_event_location) 
+        
+        // console.log(addresses)
+        
+        // let markers = []
+        
+        Object.values(event_object).map((event) => {       
+          const image = "https://image.flaticon.com/icons/png/128/1997/1997669.png";
+          
+          let marker = new google.maps.Marker({
+            position: event.position,
+            // address: event.address,
+            label: event.title,
+            // description: event.description,
+            map: map,
+            draggable: false,
+            icon: image
+          });
+        const infoWindow = new google.maps.InfoWindow({
+        // content: markerInfo,
+        maxWidth: 200,
+        content: event.description
+        
+        }); 
+          // markers.push(marker)
+          marker.setMap(map);
+          marker.addListener("click", ()=> {
+            infoWindow.open(map,marker);
+          })
+        });
+
+        console.log(markers, '++++++++ MARKERS +++++++')
+      }
+     
+      // for (const marker of markers) {
+      // const markerInfo = (`
+      //   <h1>${marker.title}</h1>
+      //   <p>
+      //     Located at: <code>${marker.position.lat()}</code>,
+      //     <code>${marker.position.lng()}</code>
+      //   </p>
+      // `);
+  
+      // const infoWindow = new google.maps.InfoWindow({
+      //   // content: markerInfo,
+    //   //   maxWidth: 200
+    //   // });
+  
+    //   markers.addListener('click', function() {
+    //     infoWindow.open(map, marker);
+    //   });
+    // }
+
+    //   markers.addListener('click', () => {
+    //       alert('Dancing Time!');
+    //   });
+    //   const pdxInfo = new google.maps.InfoWindow({
+    //     content: '<h1>Portland!</h1>'
+    //   });
+    //   pdxInfo.open(map, markers);
+    
+  
+    </script>
+      
+
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC389BQpOUF3nQFHc7qky-pJoVMkdJo2Vo&callback=initMap"
+      async>
+    </script> 
       
     {% endblock %}
-<
+
     {% block after_body %} 
     <form action="/all_dance_groups">
       <div>

@@ -2,10 +2,15 @@
 
 from flask import Flask
 from flask import (Flask, render_template, request, flash, session,
-                   redirect)
+                   redirect, jsonify)
 from model import connect_to_db, db 
 import crud
-
+import json
+import geocodeapi
+import requests
+import os 
+API_KEY = os.environ['API_KEY']
+from urllib.parse import urlencode
 from jinja2 import StrictUndefined
 
 app = Flask(__name__)
@@ -267,8 +272,9 @@ def create_new_dance_event():
     eventname = request.form.get('eventname')
     print('#########################################')
     print('eventname')
-    city = request.form.get('city')
-    zipcode = request.form.get('zipcode')
+    # city = request.form.get('city')
+    # zipcode = request.form.get('zipcode')
+    location = request.form.get('location')
     description = request.form.get('description')
     date = request.form.get('date')
     # time = request.form.get('time')
@@ -276,14 +282,14 @@ def create_new_dance_event():
     
     session['event'] = eventname
     print(session['event'])
-    event = crud.create_dance_event(eventname, city, zipcode, description, date,  reoccuring_event)
+    event = crud.create_dance_event(eventname, location, description, date, reoccuring_event)
 
     if event: #if True: if the event exists already
         flash(f'An event with that name already exists. Try again? ')
         return render_template('event.html', event=event)
         #or better to redirect back to create event page if one already exists?
     else:
-        event = crud.create_dance_event(eventname, city, zipcode, description, date, reoccuring_event)
+        event = crud.create_dance_event(eventname, location, description, date, reoccuring_event)
         flash('Event created!')
         return render_template('event.html', event=event)
 
@@ -299,21 +305,75 @@ def return_event_profile():
 
     return render_template('event.html', event=event)
 
+
 @app.route('/all_events')
 def all_events_return():
     """Returns all events"""
     
-
+    # location =  crud.return_dance_event_locations(locations)
     
     # eventname = session['event']
     events = crud.return_all_dance_events()
-    print("************************************************************")
-    print(events)
+    event_object = {} 
+    
+    for event in events:
+        lat_lng = get_lat_lng(event.dance_event_location)
+        event_object[event.dance_event_id] = {
+            'position': lat_lng,
+            'address': event.dance_event_location,
+            'title': event.dance_event_name,
+            'description': event.dance_event_description
+        }
+        
+
+
+    print(event_object)
     print('**************************************************************')
 
     if events:
-        return render_template('all_events.html', events=events)
+        return render_template('all_events.html', events=events, event_object=json.dumps(event_object))
+
+        #json.dumps when we have a dictionary already returns encoded string (jsonify is flask response object)
 # evnets=events is creating a main agrument (left hand side) and giving it a value on the right side. 
+
+
+# @app.route('/all_events/<address_or_postcode>')
+# def get_addresses_from_db_to_gmaps(address_or_postcode):
+
+        
+#     API_KEY = 'AIzaSyC389BQpOUF3nQFHc7qky-pJoVMkdJo2Vo'
+#     data_type = 'json'
+#     endpoint = f'https://maps.googleapis.com/maps/api/geocode/{data_type}'
+#     params = {'address' : address_or_postcode, 'key': API_KEY}
+#     url_params = urlencode(params)
+#     # sample = 'https//maps.googleapis.com/maps/api/geocode/json?address=539+NW+13th+Ave,+Portland,+OR+97209'
+#     # print(url_params)
+
+#     url = f'{endpoint}?{url_params}'
+#     print(url)
+
+
+def get_lat_lng(address_or_postcode, data_type = 'json'):
+            
+
+    endpoint = f'https://maps.googleapis.com/maps/api/geocode/{data_type}'
+    params = {'address' : address_or_postcode, 'key': API_KEY}
+    url_params = urlencode(params)
+    # sample = 'https//maps.googleapis.com/maps/api/geocode/json?address=539+NW+13th+Ave,+Portland,+OR+97209'
+    # print(url_params)
+    url = f'{endpoint}?{url_params}'
+    r = requests.get(url)
+    if not r.ok:
+            return {}
+    latlng = {}
+    try: 
+        latlng = r.json()['results'][0]['geometry']['location']
+    except:
+        pass
+    return {'lat': latlng.get('lat'), 'lng': latlng.get('lng')}
+
+
+
 
 @app.route('/add_group')
 def add_group():

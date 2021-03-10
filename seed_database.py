@@ -114,46 +114,46 @@ def seed_groups_with_events():
     salsa_group = GroupDance(group_dance_name='Portland Salsa y Bachata Dancers', group_dance_types='Salsa')
     create_record(salsa_group)
 
-    salsa_event = DanceEvent(group_dance_id = salsa_group.group_dance_id, dance_event_name='Salsa Nights', dance_event_city='Portland', dance_event_zipcode='97201', dance_event_description='Salsa y Bachata! Beginner class starts at 7pm. Intermediate at 7:30. Social Dancing from 8-11:30! Come enjoy with us', dance_event_date='2/28/2021', dance_event_reoccuring='Yes')
+    salsa_event = DanceEvent(group_dance_id = salsa_group.group_dance_id, dance_event_name='Salsa Nights',  dance_event_location='7000 NE Airport Way, Portland, OR 97218', dance_event_description='Salsa y Bachata! Beginner class starts at 7pm. Intermediate at 7:30. Social Dancing from 8-11:30! Come enjoy with us', dance_event_date='2/28/2021', dance_event_reoccuring='Yes')
     create_record(salsa_event)
 
     swing_group = GroupDance(group_dance_name= 'Swing PDX ', group_dance_types= 'Swing')
     create_record(swing_group)
 
-    swing_event = DanceEvent(group_dance_id = swing_group.group_dance_id, dance_event_name='SwingLoft', dance_event_city='Portland', dance_event_zipcode='97201',  dance_event_description='East Coast Swing! Beginner class starts at 6pm. Intermediate at 7:00. Social Dancing from 8-11:30! Come dance till you drop!', dance_event_date='3/8/2021', dance_event_reoccuring='Yes' )
+    swing_event = DanceEvent(group_dance_id = swing_group.group_dance_id, dance_event_name='SwingLoft', dance_event_location = '325 NW 13th Ave, Portland, OR 97209',  dance_event_description='East Coast Swing! Beginner class starts at 6pm. Intermediate at 7:00. Social Dancing from 8-11:30! Come dance till you drop!', dance_event_date='3/8/2021', dance_event_reoccuring='Yes' )
     create_record(swing_event)
 
-    swing_event = DanceEvent(group_dance_id = swing_group.group_dance_id, dance_event_name='LindyTime', dance_event_city='Portland', dance_event_zipcode='97201', dance_event_description='LindyHop weekly classes! Beginner class 2pm-3pm. Intermediate at 3:15-5pm. Practice, Practice, Practice!', dance_event_date='3/7/2021',  dance_event_reoccuring='Yes' )
+    swing_event = DanceEvent(group_dance_id = swing_group.group_dance_id, dance_event_name='LindyTime',  dance_event_location ='539 NW 13th Ave, Portland, OR 97209', dance_event_description='LindyHop weekly classes! Beginner class 2pm-3pm. Intermediate at 3:15-5pm. Practice, Practice, Practice!', dance_event_date='3/7/2021',  dance_event_reoccuring='Yes' )
     create_record(swing_event)
 
     blues_group = GroupDance(group_dance_name= 'Blues Dancers of PDX ', group_dance_types= 'Blues')
     create_record(blues_group)
 
-    blues_event = DanceEvent(group_dance_id = blues_group.group_dance_id, dance_event_name='Blues Boogie', dance_event_city='Portland', dance_event_zipcode='97045', dance_event_description='Blues Social! Every first Saturday of the Month. Beginner class starts at 7pm. Intermediate at 7:30. Social Dancing from 8pm-1am!', dance_event_date='3/6/2021',  dance_event_reoccuring='Yes' )
+    blues_event = DanceEvent(group_dance_id = blues_group.group_dance_id, dance_event_name='Blues Boogie', dance_event_location ='1725 NE Alberta St, Portland, OR 97211', dance_event_description='Blues Social! Every first Saturday of the Month. Beginner class starts at 7pm. Intermediate at 7:30. Social Dancing from 8pm-1am!', dance_event_date='3/6/2021',  dance_event_reoccuring='Yes' )
     create_record(blues_event)
 
-    blues_event = DanceEvent(group_dance_id = blues_group.group_dance_id, dance_event_name= 'Blues PDX', dance_event_city='Portland', dance_event_zipcode='97201', dance_event_description='Blues Lessons/Practica! Every Tuesday night. Beginner class starts at 5pm. Intermediate at 6:00. Practice Dancing from 7-8:30', dance_event_date='3/9/2021', dance_event_reoccuring='Yes' )
+    blues_event = DanceEvent(group_dance_id = blues_group.group_dance_id, dance_event_name= 'Blues PDX', dance_event_location = '611 SW Kingston Ave, Portland, OR 97205', dance_event_description='Blues Lessons/Practica! Every Tuesday night. Beginner class starts at 5pm. Intermediate at 6:00. Practice Dancing from 7-8:30', dance_event_date='3/9/2021', dance_event_reoccuring='Yes' )
     create_record(blues_event)
 
     tango_group = GroupDance(group_dance_name= 'Milongueros PDX', group_dance_types= 'Tango')
     create_record(tango_group)
 
-    tango_event = DanceEvent(group_dance_id = tango_group.group_dance_id, dance_event_name='Milonga Noches Azul', dance_event_city='Portland', dance_event_zipcode='97232', dance_event_description='Monthly Milonga Every Fourth Satuday. Quick Review class at 8. Milonga 8:30pm-2am - refreshments provided. Dress to impress', dance_event_date='3/27/2021', dance_event_reoccuring='Yes' )
+    tango_event = DanceEvent(group_dance_id = tango_group.group_dance_id, dance_event_name='Milonga Noches Azul', dance_event_location ='1300 SE Stark St #203, Portland, OR 97214', dance_event_description='Monthly Milonga Every Fourth Satuday. Quick Review class at 8. Milonga 8:30pm-2am - refreshments provided. Dress to impress', dance_event_date='3/27/2021', dance_event_reoccuring='Yes' )
     create_record(tango_event)
 
-    tango_event = DanceEvent(group_dance_id = tango_group.group_dance_id, dance_event_name='Milonga Canaro', dance_event_city='Portland', dance_event_zipcode='97222', dance_event_description='Biweekly Friday Night Milonga. Beginner class starts at 7pm. Intermediate at 7:30. Social Dancing from 8pm-1am!', dance_event_date='3/5/2021', dance_event_reoccuring='Yes' )
+    tango_event = DanceEvent(group_dance_id = tango_group.group_dance_id, dance_event_name='Milonga Canaro', dance_event_location = '21 NE 12th Ave, Portland, OR 97232', dance_event_description='Biweekly Friday Night Milonga. Beginner class starts at 7pm. Intermediate at 7:30. Social Dancing from 8pm-1am!', dance_event_date='3/5/2021', dance_event_reoccuring='Yes' )
     create_record(tango_event)
 
-    tango_event = DanceEvent(group_dance_id = tango_group.group_dance_id, dance_event_name='Milonga Sentimental', dance_event_city='Portland', dance_event_zipcode='97218', dance_event_description=' 2nd Saturday Milonga. No classes. Tango Nuevo and Milonguero Tandas! Bring a snack to share! Social Dancing from 8pm-2am!', dance_event_date='3/13/2021', dance_event_reoccuring='Yes' )
+    tango_event = DanceEvent(group_dance_id = tango_group.group_dance_id, dance_event_name='Milonga Sentimental', dance_event_location ='6305 SE Foster Rd, Portland, OR 97206', dance_event_description=' 2nd Saturday Milonga. No classes. Tango Nuevo and Milonguero Tandas! Bring a snack to share! Social Dancing from 8pm-2am!', dance_event_date='3/13/2021', dance_event_reoccuring='Yes' )
     create_record(tango_event)
 
     hiphop_group = GroupDance(group_dance_name= 'PDX Hip Hop ', group_dance_types= 'Hip Hop')
     create_record(hiphop_group)
      
-    hiphop_event = DanceEvent(group_dance_id = hiphop_group.group_dance_id, dance_event_name= 'QuestLove Hip Hop', dance_event_city='Portland', dance_event_zipcode='97266', dance_event_description='Weekly classes every Tuesday and Thursday 7pm Sharp! Bring a water bottle and comfortable clothes ', dance_event_date=None , dance_event_reoccuring='Yes' )
+    hiphop_event = DanceEvent(group_dance_id = hiphop_group.group_dance_id, dance_event_name= 'QuestLove Hip Hop', dance_event_location = 'S Gibbs St, Portland, OR 97239', dance_event_description='Weekly classes every Tuesday and Thursday 7pm Sharp! Bring a water bottle and comfortable clothes ', dance_event_date=None , dance_event_reoccuring='Yes' )
     create_record(hiphop_event)
 
-    hiphop_event = DanceEvent(group_dance_id = hiphop_group.group_dance_id, dance_event_name='Hip Hop Duels', dance_event_city='Portland', dance_event_zipcode='97266', dance_event_description='Come show off your moves in a duel competition! 8pm March 20th! RSVP ', dance_event_date='3/13/2021', dance_event_reoccuring='No' )
+    hiphop_event = DanceEvent(group_dance_id = hiphop_group.group_dance_id, dance_event_name='Hip Hop Duels', dance_event_location = '1510 SE 9th Ave, Portland, OR 97214', dance_event_description='Come show off your moves in a duel competition! 8pm March 20th! RSVP ', dance_event_date='3/13/2021', dance_event_reoccuring='No' )
     create_record(hiphop_event)
 
 

@@ -92,7 +92,7 @@ class DanceEvent(db.Model):
     # dance_event_city = db.Column(db.String)
     dance_event_location = db.Column(db.String)
     dance_event_description = db.Column(db.String)
-    dance_event_date = db.Column(db.DateTime)
+    dance_event_date = db.Column(db.Date)
     # dance_event_time = db.Column(db.Integer)
     dance_event_reoccuring = db.Column(db.String)
     # dance_event_photo = 

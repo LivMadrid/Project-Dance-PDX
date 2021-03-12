@@ -2,7 +2,7 @@
 import os
 import json
 from random import choice, randint
-from datetime import datetime
+from datetime import date
 
 import crud
 from model import User, GroupDance, DanceEvent, db, connect_to_db

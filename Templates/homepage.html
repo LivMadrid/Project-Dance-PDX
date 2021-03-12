@@ -2,37 +2,69 @@
 {% block title %}Dance Now PDX{% endblock %}
 
 {% block body %}
-  <h1>Welcome Dancers! Join the community of dancers around Portland, Oregon. Whether you are interested in Salsa, Hip Hop, Swing - you can connect with other dancers and communities, attend events, 
-    create your own events, and use our calendar of events with our map to see where social dances and lessons are going on in what neighborhood! </h1>
-  <!-- <style > 
-    body   {
-              background: rgb(207, 142, 199);
-            } </style> -->
-  <h2>Navigation</h2>
-  
-  <div> 
-    <form action= "/login">
-      <div>
-      <label> Already a Dance Now user? Login to your account</label>
-      <input value = "Login" type="submit">
+
+
+
+
+
+
+
+
+<div class= "container">
+  <div class="col mb-4"> 
+  <div class="jumbotron align-items-center" style="background-color:#000000" >
+    <h1 class="display-4"> DANCE PDX</h1>
+      <p class="lead"> Welcome dancers!
+        Join your community of dancers in Portland, Oregon. 
+        Whether you are interested in Salsa, Hip Hop, Swing, or Blues - you can connect with
+        communities, attend events, create your own events, and use our eventmap to see where social dances and lessons are going on in your neighborhood!
+        Happy Dancing!
+      </p>
+      <hr class="my-4">
+
+    </div> 
+  </div>
+</div>
+       
+
+
+
+
+
+<div class="container">
+
+  <div class=" row">
+
+    <div class="col-lg-6 mb-4">
+      <div class="card h-100" style="background-color:#000000">
+        <h2 class="card-title">Already a Dance PDX user? Login to your account</h2>
+        <form action= "/login">
+          <div class="form-group">
+            <button type="submit" class="btn btn-outline-light btn-lg">Login</button>
+          </div>
+        </form>
+      </div>
     </div>
 
+      
+
+    <div class="col-lg-6 mb-4">
+      <div class="card h-100" style="background-color:#000000">
+        <h2 class="card-title">New User? Sign up today and start dancing away!</h2>
+        <form action="/sign_up">
+          <div class="form-group">
+            <button type="submit" class="btn btn-outline-light btn-lg">Sign Up</button>
+          </div>
+        </form>
+      </div>
+    </div>
+   </div>
+</div>
+  
  
-      <form action="/sign_up" method="POST">
-        <div>
-        <label> New User? Sign up today and start dancing away!</label>
-        <input value = "Sign Up" type="submit">
-        </div>
-      </form>
-   
-    
-  </div>
- 
+       
+      
 
 
 
-<!-- 
-    <li><a href="/log_in">Login to your account</a></li>
-    <li><a href="/sign_up">Sign up today and start dancing away!</a></li>
-  </ul> -->
 {% endblock %}

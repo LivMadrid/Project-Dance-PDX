@@ -20,18 +20,57 @@
               <option value="tango">Tango</option>
               <option value="hiphop">Hip Hop</option>
           </select>
-    
+          <button type="submit" class="btn btn-outline-dark">Submit</button>
             <button type="submit">Submit</button>
          </div>
     </form>
 
 
-  <h2>Navigation</h2>
-  <ul>
-    <li><a href="/all_events">See all events coming up in our calendar</a></li>
+
+
+
+    <div class="container">   
+      <div class="col mb-4">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item active">
+              <a class="nav-link" href="/"> Homepage <span class="sr-only"> (current) </span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/all_events"> Events </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/all_dance_groups"> Groups </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/user_profile"> User Profile </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      </div>
+    </div>
     
-    <!-- <li><a href="/sign_up">Sign up today and start dancing away!</a></li> -->
-  </ul>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 {% endblock %}
 
 <!-- dance_event_name={self.dance_event_name}\

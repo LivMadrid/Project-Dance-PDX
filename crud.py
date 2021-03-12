@@ -96,7 +96,7 @@ def return_group_profile(grouptype):
     """Display Group Profile""" 
 
     group = GroupDance.query.filter_by(group_dance_types=grouptype).first()
-
+    print(group, "******************************************")
     return group
 
 
@@ -131,6 +131,7 @@ def return_all_users_in_group(group):
         # print(all_users,"******************************")
 
     print(group, '##############This is GROUP##################')
+    print(group)
     users_in_group_objects = GroupUser.query.filter_by(group_id=group.group_dance_id).all()
 
     print(users_in_group_objects)
@@ -138,9 +139,9 @@ def return_all_users_in_group(group):
     users = []
 
     for users_in_group_object in users_in_group_objects:
-        # username = User.query.get(users_in_group_object.user_id)
+        user = User.query.filter_by(user_id=users_in_group_object.user_id).first()
         # usernames.append(username.username)
-        users.append(users_in_group_object.users)
+        users.append(user)
     print(users)
 
     return users

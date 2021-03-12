@@ -2,108 +2,157 @@
 {% block title %}Welcome ?????{% endblock %}
 <div> <img src=" /img/dancefeet1.jpg" alt="Dance Feet" style="width:100%"> </div>
 {% block body %}
-  <h1>Welcome {{user.username}}</h1>
+  
 
-  <h2>
-    <div>
-      <label> Member Info</label>
-        <label> Username: </label>
-          {{user.username}}
+  
+    <div class= "container">
+      <div class="col mb-4"> 
+      <div class="jumbotron" style="background-color:#000000">
+        <h1 class="display-4">Welcome {{user.username}}</h1>
+          <img src="https://image.flaticon.com/icons/png/128/1997/1997669.png" class="img-thumbnail">
+          <hr class="my-4">
+          <p>
+            <h2>{{user.user_bio}}</h2>
+            
+        <h3>Member of:
+          <div>
+            {% for name in groupnames%}
+            
+            <ul>
+              {{name}} 
+            </ul>
+            {%endfor%}
+          </div>
+          <label> Favorite Events: </label>
+            {{user.user_events}}
+          </h3>
+       
+        <h4>Want to connect with {{user.user_fname}} {{user.user_lname}} to organize an event, join a group, or just meet up to dance? Please email me at  {{user.email}}</h4>
+      </div>
+    </div>
+  
+ 
+  
+  <div class="container">
 
-        <label> Full Name: </label>
-          {{user.user_fname}} {{user.user_lname}}
+    <div class=" row">
+  
+      <div class="col-lg-6 mb-4">
+        <div class="card h-100" style="background-color:#000000">
+          <h2 class="card-title"> Get Started:</h2>
+          <h4>
+            <form action="/user_profile" method="POST">
+            What groups would you like to join?
+            <div class="form-group" >
+              <input type="checkbox"  name='Salsa' value="Salsa">
+              <label>Salsa</label>
+            
+              <input type="checkbox" name="Swing"  value="Swing">
+              <label>Swing</label>
+            
+              <input type="checkbox" name="Blues" value="Blues">
+              <label>Blues</label>
+  
+              <input type="checkbox" name="Tango" value="Tango">
+              <label>Tango</label>
+  
+              <input type="checkbox" name="Hip Hop" value="Hip Hop">
+              <label>Hip Hop</label>
+            </div>
 
-        <label>Email: </label>
-          {{user.email}}
-
-        <label> City:</label>
-          {{user.user_city}}
-
-        <label> Zipcode:</label>
-          {{user.user_zipcode}}
-
-        <label> Bio:</label>
-         {{user.user_bio}}
-
-        <label> Groups</label>
-        <form action="/user_profile" method="POST">
-          What groups would you like to join?
-        
-          <input type="checkbox"  name='Salsa' value="Salsa">
-          <label>Salsa</label>
-        
-          <input type="checkbox" name="Swing"  value="Swing">
-          <label>Swing</label>
-        
-          <input type="checkbox" name="Blues" value="Blues">
-          <label>Blues</label>
-
-          <input type="checkbox" name="Tango" value="Tango">
-          <label>Tango</label>
-
-          <input type="checkbox" name="Hip Hop" value="Hip Hop">
-          <label>Hip Hop</label>
-
-          <button type="submit">Submit</button>
-
-        </form>
-         
-    
-        <label>Member of:</label>
-        <div>
-          {% for name in groupnames%}
-          <li>
-            {{name}} IS THIS WORKING ????????????????????
-          </li>
-          {%endfor%}
+            
+              <div class="form-group" >
+                <button type="submit" class="btn btn-outline-light btn-lg " >Submit</button>
+              </div>
+            </form>
+          </h4>
         </div>
-        
-        <label> Events</label>
-          {{user.user_events}}
+      </div>
+    
+      
+
+      
+      <div class="col-lg-6 mb-4">
+        <div class="card h-100" style="background-color:#000000">
+          <h2 class="card-title"> Get Started:</h2>
+              <form action="/all_dance_groups">
+                <div class="form-group">
+                  <button type="submit" class="btn btn-outline-light btn-lg ">Dance Groups</button>
+                </div>
+              </form>
+              <form action="/all_events">
+                <div class="form-group">
+                  <button type="submit" class="btn btn-outline-light btn-lg ">Dance Events</button>
+                </div>
+              </form>
+              <form action="/add_event">
+                <div class="form-group">
+                  <button type="submit" class="btn btn-outline-light btn-lg ">New Dance Event</button>
+                </div>
+              </form>
+        </div>
+      </div>
+
+    
+  
 
     </div>
-  </h2>
-  <!-- <form action="/all_dance_groups">
-  <div>
-    <label> Join groups to start dancing with your community </label>
-    <input value = "GROUPS" type="submit">
   </div>
-</form> -->
 
-  <form action="/all_events">
-  <div>
-    <label>See all events on calendar</label>
-    <input value = "EVENTS" type="submit">
+
+  
+
+
+    
+
+  
+  
+<div class="container">   
+    
+  <nav class="navbar navbar-expand-lg navbar-dark" style="background-color:#000000">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+          <a class="nav-link" href="/"> Homepage <span class="sr-only"> (current) </span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/all_events"> Events </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/all_dance_groups"> Groups </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/user_profile"> User Profile </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</div>
+
+
+<div class="container">   
+
+<form action="/logout" >
+  <div class="form-group">
+    <button type="submit"  class="btn btn-outline-light btn-lg" style="background-color: #000000"  >Logout</button>
+  
+
   </div>
+  
 </form>
 
+</div>
 
 
 
-
-DISPLAY GROUPS--->  DISPLAY EVENTS 
-
-  <h3>Navigation</h3>
-  <div>
-    <form action="/add_event">
-      <div>
-        <input value = "Create Dance Event" type="submit">
-      </div>
-    </form>
-    <form action="/add_group">
-    <div>
-      <input value = "Create New Group" type="submit">
-    </div></form>
 
     
-
-  
-  
     
-      <form action="/logout" >
-        <button type="submit">Logout</button>
-      </form>
-  </div>
+
 
 
 {% endblock %}

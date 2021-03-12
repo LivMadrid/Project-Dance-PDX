@@ -2,32 +2,54 @@
 {% block title %}Please Log In to Continue{% endblock %}
 
 {% block body %}
-  <h1>Dancer Log In Form</h1>
-  <form action="/login" method="POST">   
-    <div class= 'container'>
-        <label>Username:</label>
-        <input type="username" name="username" required>
-        <label>Email:</label>
-        <input type="email" name="email" required>
-        <label>Password:</label>
-        <input type="password" name="password" required>
-        <button type="submit">Login</button>
-        
-        <a href="/forgotten_password">Forgot Password?</a>
-    </div>
-
-    </form>
-
+  
     
 
-
-<h2>Navigation</h2>
-  <form action="/sign_up">
-    <div>
-      <label> Not a member yet? Sign up today and start dancing away!</label>
-      <input value = "Sign Up" type="submit">
+    <div class= "container">
+      
+      <div class=" row">
+        <div class="col mb-4"> 
+          <div class="jumbotron align-items-center" style="background-color:#000000" >
+          <h1 class="display-4"> Dancer Login Form</h1>
+            <p class="lead"> 
+              <form action="/login" method="POST">  
+                <div class="form-group">
+                  <label>Username:</label>
+                    <input type="username" name="username" required>
+                  <label>Email:</label>
+                    <input type="email" name="email" required>
+                  <label>Password:</label>
+                    <input type="password" name="password" required>
+                    <button type="submit" class="btn btn-outline-light btn-lg" >Login</button>
+                  <a href="/forgotten_password">Forgot Password?</a>
+                </div> 
+              </form>
+            </p>
+            <hr class="my-4">
+      
+          </div> 
+        </div>
+      </div>
     </div>
-  </form>
+
+
+
+    <div class="container">
+
+      <div class=" row">
+    
+        <div class="col mb-4">
+          <div class="card h-100" style="background-color:#000000">
+            <h2 class="card-title"> Not a member yet? Sign up today and start dancing away!</h2>
+              <form action="/sign_up">
+                <div class="form-group">
+                  <button type="submit" class="btn btn-outline-light btn-lg">Sign Up</button>
+                </div>
+              </form>
+          </div>
+        </div>
+      </div>
+    </div>    
 {% endblock %}
 
 

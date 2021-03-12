@@ -123,7 +123,7 @@ def get_sign_up_info():
     else:
         user = crud.create_user(username, fname, lname, email, password, bio, city, zipcode, events)
         flash('Account created! ')
-        return render_template('user_profile.html', user=user)
+        return redirect('/user_profile')
 
 @app.route('/user_profile')
 def show_profile():
@@ -132,6 +132,7 @@ def show_profile():
  
     username = session['user']
     user = crud.return_user_profile(username)
+    print(user, username, "##########")
     groupnames = crud.return_user_groups(user) 
 
     return render_template('user_profile.html', user=user, groupnames=groupnames)
@@ -341,7 +342,7 @@ def all_events_return():
 # def get_addresses_from_db_to_gmaps(address_or_postcode):
 
         
-#     API_KEY = 'AIzaSyC389BQpOUF3nQFHc7qky-pJoVMkdJo2Vo'
+#    
 #     data_type = 'json'
 #     endpoint = f'https://maps.googleapis.com/maps/api/geocode/{data_type}'
 #     params = {'address' : address_or_postcode, 'key': API_KEY}
@@ -422,9 +423,9 @@ def return_group_profile_page(grouptype):
     # all_users = crud.return_all_users_in_group()
     # grouptype = request.args.get('grouptype')
     group = crud.return_group_profile(grouptype)
-
+    print(group, "#####################################group###")
     users = crud.return_all_users_in_group(group)
-    
+    print(users,"**************users**************************")
         
     return render_template('group_dance_page.html', group=group, users=users )
 

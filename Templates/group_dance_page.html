@@ -7,34 +7,75 @@
 </head>
 <body>
   {% block body %}
-  <h1>Group Page</h1>
+  
 
-<h2>
-  <div>
-    <label> Group Info</label>
-   
+
+
+  <div class= "container">
+    <div class="col mb-4"> 
+      <div class="jumbotron" style="background-color:#000000">
+        <h1 class="display-4">Welcome to {{group.group_dance_name}}</h1>
+          <img src="https://image.flaticon.com/icons/png/128/1997/1997669.png" class="img-thumbnail">
+          <hr class="my-4">
+          <p>
+            {%for user in users %}
+            {{user.username}}
+            {{user.email}}
+            {%endfor%}
+          </p>
+
+      </div>
+    </div>
   </div>
+  
 
-  {%for user in users %}
-  {{user.username}}
-  {{user.user_city}}
-  {{user.user_zipcode}}
-  {%endfor%}
 
 
 
 
 
   
-  <h2>Navigation</h2>
-  <ul>
-    <li><a href="/all_events">See all events coming up in our calendar</a></li>
-    <li><a href="/user_profile">Return to Profile</a></li>
   
-  </ul>
+<div class="container">   
+  <div class="col mb-4">
+  <nav class="navbar navbar-expand-lg navbar-dark" style="background-color:#000000">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+          <a class="nav-link" href="/"> Homepage <span class="sr-only"> (current) </span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/all_events"> Events </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/all_dance_groups"> Groups </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/user_profile"> User Profile </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  </div>
+</div>
+
+
     
-    <!-- <li><a href="/sign_up">Sign up today and start dancing away!</a></li> -->
-  </ul>
+
+
+
+
+
+
+
+
+
+
+
 {% endblock %}
 
 </body> 

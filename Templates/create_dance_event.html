@@ -1,29 +1,38 @@
 {% extends 'base.html' %}
 {% block title %}Create a New Dance Event{% endblock %}
-<div> <img src=" /img/dancefeet1.jpg" alt="Dance Feet" style="width:100%"> </div>
+
 {% block body %}
 
-  <h1>Event Info Form</h1>
-     <form action="/add_event" method="POST">
 
-         <div class = "container">
 
-            <label>Event Name: </label>
+
+<div class= "container">
+  <div class="col mb-4"> 
+  <div class="jumbotron align-items-center" style="background-color:#000000" >
+    <h1 class="display-4"> Event Info Form</h1>
+     <h2>Create a new dance event: a class, practica, pop-up, meet-up, or social and get grooving!</h2>
+      <hr class="my-4">
+        
+        <form action="/add_event" method="POST">
+          <div class="form-group" >
+            <h3>
+                <label>Event Name: </label>
                 <input type="text" name="eventname">
-
-            <label>Event Location:</label>
-                <input type="text" name="location" required>
-
-            <label>Event Description:</label>
+            </h3>
+            <h3>
+              <label>Event Location:</label>
+              <input type="text" name="location" required>
+            </h3> 
+           <h3>
+             <label>Event Description:</label>
                 <input type="textarea" name="description"> 
-
-            <label>Event Date:</label>
+            </h3>
+            <h3>
+              <label>Event Date:</label>
                 <input type="date" name="date" required>
-
-            <!-- <label>Event Time:</label>
-                <input type="number" name="time" required> -->
-
-            <label>Event Group Type:</label>
+            </h3>
+            <h3>
+              <label>Event Group Type:</label>
                 <select name= "Group Type" id=' Group Type'>
                     <option value="salsa">Salsa</option>
                     <option value="swing">Swing</option>
@@ -31,7 +40,8 @@
                     <option value="tango">Tango</option>
                     <option value="hiphop">Hip Hop</option>
                 </select>
-
+            </h3>
+            <h3>
                 <label>Event Group Name:</label>
                 <select name= "Group Name" id=' Group Name'>
                     <option value="portland salsa y bachata dancers">Portland Salsa y Bachata Dancers</option>
@@ -40,30 +50,62 @@
                     <option value="milongueros pdx">Milongueros PDX</option>
                     <option value="pdx hip hop">PDX Hip Hop</option>
                 </select>
-
-
-
-
+            </h3>
+              
+            <h3>
             <label>Is this a reoccuring event?</label>
                 <label>yes</label><input type="radio" id="Yes" name=" reoccuringevent" value="Yes">
                 <label>no</label><input type="radio" id="No"  name=" reoccuringevent" value="No">
+            </h3>
             
-            <button type="submit">Submit</button>
-         </div>
-     </form>
+            <button type="submit" class="btn btn-outline-light btn-lg">Submit</button>
+          </div>
+      </form>
+    </div> 
+  </div>
+</div>
+       
 
 
-  <h2>Navigation</h2>
-  <ul>
-    <li><a href="/all_events">See all events coming up in our calendar</a></li>
-    <li><a href="/user_profile">Return to Profile</a></li>
+
+
+
+
+
+
+    
+<div class="container">   
+    <div class="col mb-4">
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color:#000000">
+      <a class="navbar-brand" href="#">Navbar</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item active">
+            <a class="nav-link" href="/"> Homepage <span class="sr-only"> (current) </span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/all_events"> Events </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/all_dance_groups"> Groups </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/user_profile"> User Profile </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    </div>
+  </div>
   
-  </ul>
-    
+  
+   
 
-    
-    <!-- <li><a href="/sign_up">Sign up today and start dancing away!</a></li> -->
-  </ul>
+
+
 {% endblock %}
 
 <!-- dance_event_name={self.dance_event_name}\

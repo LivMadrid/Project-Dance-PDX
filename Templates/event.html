@@ -7,51 +7,97 @@
   </head>
   <body>
     {% block body %}
-    <h1>Event Page</h1>
-
-  <h2>
-    <div>
-      <label> Member Info</label>
-        <label> Event name: </label>
-        {{event.dance_event_name}}
-
-        <label> Event Location: </label>
-          {{event.dance_event_location}} 
-
-        <label> Event Description:</label>
-          {{event.dance_event_description}}
-
-        <label> Event Date:</label>
-          {{event.dance_event_date}}
-
-        
-        <label> Groups</label>
-        
-        <label> Event reoccuring</label>
-          {{event.dance_event_reoccuring}}
-
-    </div>
-  </h2>
-
-  <h3> Navigation</h3>
-    <ul>
-      <form action="/add_event">
-        <div>
-          <input value = "Create Dance Event" type="submit">
-        </div>
-      </form>
-      <form action="/add_group">
-      <div>
-        <input value = "Create New Group" type="submit">
-      </div></form>
-
-      <ul>
-        <li><a href="/all_events">See all events coming up in our calendar</a></li>
-        <li><a href="/user_profile">Return to Profile</a></li>
-      
-      </ul>
   
-    </ul>
+<div class="container">
+
+
+    
+    
+      
+        <div class="col mb-4"> 
+          <div class="jumbotron" style="background-color:#000000">
+            <h1 class="display-4">Event Dance Page</h1>
+              <img src="https://image.flaticon.com/icons/png/128/1997/1997669.png" class="img-thumbnail">
+              <hr class="my-4">
+              <h2>
+                  <label> Event name: </label>
+                  {{event.dance_event_name}}
+
+                  <label> Event Location: </label>
+                    {{event.dance_event_location}} 
+
+                  <label> Event Description:</label>
+                    {{event.dance_event_description}}
+
+                  <label> Event Date:</label>
+                    {{event.dance_event_date}}
+                  
+                  <label> Event reoccuring</label>
+                    {{event.dance_event_reoccuring}}
+              </h2>
+          </div>
+        </div>
+
+  
+   
+      <div class="container">
+          <div class="col-lg mb-4">
+            <div class="card h-100" style="background-color:#000000">
+              <h2 class="card-title"> What would you like to do next?</h2>
+                  <form action="/all_dance_groups">
+                    <div class="form-group">
+                      <button type="submit" class="btn btn-outline-light btn-lg "> See Dance Groups</button>
+                    </div>
+                  </form>
+                  <form action="/all_events">
+                    <div class="form-group">
+                      <button type="submit" class="btn btn-outline-light btn-lg ">See Dance Events</button>
+                    </div>
+                  </form>
+                  <form action="/add_event">
+                    <div class="form-group">
+                      <button type="submit" class="btn btn-outline-light btn-lg ">Create Another Dance Event</button>
+                    </div>
+                  </form>
+            </div>
+          </div>
+        </div>
+  </div>
+</div>
+
+    <div class="container">   
+      <div class="col mb-4">
+      <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #000000;">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item active">
+              <a class="nav-link" href="/"> Homepage <span class="sr-only"> (current) </span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/all_events"> Events </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/all_dance_groups"> Groups </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/user_profile"> User Profile </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      </div>
+    </div>
+    
+    
+
+
+
+
+
     
     {% endblock %}
 

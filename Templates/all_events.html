@@ -13,49 +13,109 @@
   <body>
     {% block body %}
     
-    <h1>PDX DANCE EVENTS: </h1>
+    <h1>DANCE PDX EVENTS</h1>
 
-      <ul>   Group Events
-        {% for event in events %}
+      <div class="container">   
         
-        <div class="row">
-          <div class="card-deck">
-            <div class="card" style="width: 18rem">
-              <img src="https://images.unsplash.com/photo-1504609813442-a8924e83f76e?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" class="card-img-top" alt="...">
-                <h2 class="card-title">{{event.dance_event_name}}</h2>
-                  <ul class="list-group list-group-flush">
-                    <li class="list-group-item"> {{event.dance_event_description}}</li>
-                    <li class="list-group-item">{{event.dance_event_date}}</li>
-                    <li class="list-group-item"> {{event.dance_event_location}}</li>
-                  </ul>
-                <div>
-                  <button type="button">Going!</button>
-                  <button type="button">Interested!</button>
-                </div>
-              <a href="" class="card-link"></a>
-          </div>
-        </div>
-      </div>
-   
-
-            <!-- {{event.group.group_dance_name | default('NONE', boolean=true)}} -->
-           
-          <!-- <li>{{event.dance_event_name}} :{{event.dance_event_description}}, {{event.dance_event_date}}, {{event.dance_event_location}}</li>
-       -->
-         
-       
+        <div class="row row-cols-3">
+<!-- 
           
+           https://images.unsplash.com/photo-1542596827-4559ae8ffdbd?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1351&q=80
+                
+        
+          
+           
+          https://static.wixstatic.com/media/89afb8_72bd0872084d4710bf65f888bcb4c143~mv2_d_4608_2290_s_2.jpeg"  -->
+         
+          <!-- https://images.unsplash.com/photo-1504609813442-a8924e83f76e?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" -->
+          <!-- https://image.flaticon.com/icons/png/128/1997/1997669.png" -->
+            {% for event in events %}
+            <div class="col mb-4">
+              <div class="card h-100" style="background-color:#000000">
+                <img src=" https://images.unsplash.com/photo-1556298209-c77127834d8a?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1353&q=80 "class="card-img-top" alt="...">
+                <h2 class="card-title">{{event.dance_event_name}}</h2>
+                <ul class="list-group list-group-flush" >
+                  <li class="list-group-item"> {{event.dance_event_description}}</li>
+                  <li class="list-group-item">{{event.dance_event_date}}</li>
+                  <li class="list-group-item"> {{event.dance_event_location}}</li>
+                </ul>
+                <div>
+                  <button id="Going!" type="button" class="btn btn-outline-light btn-lg">Going!</button>
+                  <button id="Interested!" type="button" class="btn btn-outline-light btn-lg">Interested!</button>
+                  
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+            
+          
+        
+        </div>
+      </div>  
+    
+
+      <div class="container">   
+        <div class="row">
+            <div class="col mb-4">
+              <div class="card h-100" style="background-color:#000000">
+                <h2 class="card-title"></h2>
+                  <form action="/add_event">
+                    <div class="form-group">
+                      <input value= "Create New Event" type="Submit" class="btn btn-outline-light btn-lg" style="background-color: #000000"></button>
+                    </div>
+                  </form>
+              </div>
+            </div>
+        </div> 
+      </div>
+     
         {# Event is a sql alchemy object and it has all the attributes that are defined in model
         and you are able to access values using . notation because its an object #}  
-        {% endfor %}
+      
+    
+    
+    <div id="map" style="height:100%"></div>
+
+    
+<div class="container">   
+  <div class="col mb-4">
+  <nav class="navbar navbar-expand-lg navbar-dark" style="background-color:#000000">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+          <a class="nav-link" href="/"> Homepage <span class="sr-only"> (current) </span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/all_events"> Events </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/all_dance_groups"> Groups </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/user_profile"> User Profile </a>
+        </li>
       </ul>
-    
-    
-    <div id="map" style="height:100%;"></div>
+    </div>
+  </nav>
+  </div>
+</div>
+
+
+
+
+
+
+
 
         
     <script>
       console.log('JS IS WORKING!')
+
+     
       
       let event_object = {{ event_object|safe }}
       console.log(event_object, '====== EVENT OBJECT ======"')
@@ -71,6 +131,7 @@
         const map = new google.maps.Map(document.getElementById("map"), {
           zoom: 15,
           center: portland_or,
+          mapId: "f56c050dbfe81f32"
         });
         // The marker, positioned in portland
         // addresses = events.map((event) => event.dance_event_location) 
@@ -107,6 +168,9 @@
         console.log(markers, '++++++++ MARKERS +++++++')
       }
      
+
+
+
       // for (const marker of markers) {
       // const markerInfo = (`
       //   <h1>${marker.title}</h1>
@@ -139,36 +203,20 @@
       
 
     <script
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC389BQpOUF3nQFHc7qky-pJoVMkdJo2Vo&callback=initMap"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC389BQpOUF3nQFHc7qky-pJoVMkdJo2Vo&map_ids=f56c050dbfe81f32&callback=initMap"
       async>
     </script> 
       
     {% endblock %}
 
     {% block after_body %} 
-    <form action="/all_dance_groups">
-      <div>
-        <label> Join groups to start dancing with your community </label>
-          <input value = "Join Groups" type="submit">
-      </div>
-    </form>
+    
 
-    <form action="/add_event">
-      <div>
-        <label> Create an event for your community </label>
-          <input value = "Create New Event" type="submit">
-      </div>
-    </form> 
 
 
 
     
-  <h2>Navigation</h2>
-  <ul>
-    <li><a href="/all_events">See all events coming up in our calendar</a></li>
-    <li><a href="/user_profile">Return to Profile</a></li>
   
-  </ul>
     {% endblock %}
 
   </body>

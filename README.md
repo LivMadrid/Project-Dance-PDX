@@ -6,13 +6,13 @@ DANCE PDX is a social network application designed for dancers to connect with t
 Users sign-up for an account and are then able to create a profile, create new events, join groups, and display
 their events dynamically on Google Maps. 
  
- Created with:
+ ## Created with:
  Backend: Python3, Flask, SQLAlchemy, JSON
  Frontend: HTML5, CSS3, Bootstrap, Jinja, Javascript
  Database: PostgreSQL
  API: Google Maps Geocode API, Google Maps Javascript API
 
-Installation:
+## Installation:
 
 Clone repository:
 $ git clone https://github.com/LivMadrid/Project-Dance-PDX.git
@@ -39,10 +39,10 @@ Initiate Server:
 
 Now enter in http://localhost:5000/ to your browser and start dancing!
 
-Video Demo:
+## Video Demo:
 https://youtu.be/3kmkk9leq2U
 
-Version 2.0
+## Version 2.0
 
 User Capabilities:
  -Chat/Messaging
@@ -58,7 +58,7 @@ Technologies:
 - Add Google Maps Directions API so users could just use website to find location and driections to events 
 
 
-About the developer:
+## About the developer:
 
 Olivia hails from multi-faceted background. Since Olivia was a child she was interested in people, art, dancing, and languages. 
 After studying, living, and working abroad in Italy, Turkey, and Hungary she became fluent in Italian and versed in Turkish and Hungarian. 
